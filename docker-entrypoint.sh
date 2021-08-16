@@ -1,7 +1,7 @@
 #!/bin/ash
 
 # Run scanner
-./lw-scanner evaluate
+/usr/local/bin/lw-scanner evaluate
 if [ $? != 0 ]; then
     echo "Vulnerability scan failed. Failing action as security can not be guaranteed."
     exit 1
