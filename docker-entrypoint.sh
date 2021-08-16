@@ -7,6 +7,8 @@ if [ $? != 0 ]; then
     exit 1
 fi
 
+ls -alR ${GITHUB_WORKSPACE}
+
 # Cecking results
 if [ ${INPUT_FAIL_ONLY_IF_VULNERABILITIES_FIXABLE} ] && [ $(jq '.fixable_vulnerabilities' "${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json") -ge 1 ]; then
     echo "At least one fixable vulnerabilty found. Failing action."
