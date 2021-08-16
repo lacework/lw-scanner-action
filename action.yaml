@@ -1,0 +1,54 @@
+name: 'lw-scanner'
+description: 'Lacework Inline Scanner'
+author: 'Tim Arenz'
+inputs:
+  image_name:
+    description: 'Name of the container image you want to scan, for example, node'
+    required: true
+  image_tag:
+    description: 'Tag of the container image you want to scan, for example, 12.18.2-alpine'
+    required: true
+  fail_if_critical_vulnerabilities_found:
+    description: 'Fail action if critical vulnerabilities are found.'
+    required: false
+    default: 'true'
+  fail_if_high_vulnerabilities_found:
+    description: 'Fail action if high vulnerabilities are found.'
+    required: false
+    default: 'true'
+  fail_if_medium_vulnerabilities_found:
+    description: 'Fail action if medium vulnerabilities are found.'
+    required: false
+    default: 'true'
+  fail_if_low_vulnerabilities_found:
+    description: 'Fail action if low vulnerabilities are found.'
+    required: false
+    default: 'false'
+  fail_if_info_vulnerabilities_found:
+    description: 'Fail action if info vulnerabilities are found.'
+    required: false
+    default: 'false'
+  fail_only_if_vulnerabilities_fixable:
+    description: 'Only fail action if found vulnerabilities are fixable.'
+    required: false
+    default: 'false'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.lacework_account_name }}
+    - ${{ inputs.lacework_access_token }}
+    - ${{ inputs.image_name }}
+    - ${{ inputs.image_tag }}
+    - ${{ github.repository }}
+    - ${{ github.run_id }}
+    - ${{ fail_if_critical_vulnerabilities_found }}
+    - ${{ fail_if_high_vulnerabilities_found }}
+    - ${{ fail_if_medium_vulnerabilities_found }}
+    - ${{ fail_if_low_vulnerabilities_found }}
+    - ${{ fail_if_info_vulnerabilities_found }}
+    - ${{ fail_only_if_vulnerabilities_fixable }}
+branding:
+  icon: 'alert-triangle'
+  color: 'blue'
