@@ -1,8 +1,9 @@
 #!/bin/sh
 
 # Run scanner
-echo "lw-scanner evaluate "${INPUT_IMAGE_NAME}" "${INPUT_IMAGE_TAG}" --build-plan "${GITHUB_REPOSITORY}" --build-id "${GITHUB_RUN_ID}" --data-directory "${GITHUB_WORKSPACE}""
-lw-scanner evaluate "${INPUT_IMAGE_NAME}" "${INPUT_IMAGE_TAG}" --build-plan "${GITHUB_REPOSITORY}" --build-id "${GITHUB_RUN_ID}" --data-directory "${GITHUB_WORKSPACE}"
+echo "lw-scanner evaluate ${INPUT_IMAGE_NAME} ${INPUT_IMAGE_TAG} --build-plan ${GITHUB_REPOSITORY} --build-id ${GITHUB_RUN_ID} --data-directory ${GITHUB_WORKSPACE}"
+#lw-scanner evaluate ${INPUT_IMAGE_NAME} ${INPUT_IMAGE_TAG} --build-plan ${GITHUB_REPOSITORY} --build-id ${GITHUB_RUN_ID} --data-directory ${GITHUB_WORKSPACE}
+lw-scanner evaluate ${INPUT_IMAGE_NAME} ${INPUT_IMAGE_TAG} --data-directory ${GITHUB_WORKSPACE}
 if [ $? != 0 ]; then
     echo "Vulnerability scan failed. Failing action as security can not be guaranteed."
     exit 1
