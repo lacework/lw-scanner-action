@@ -1,35 +1,25 @@
 #!/bin/sh
 
-# Variables rerquired to configure the scan
-export LW_IMAGE_NAME=${1}
-export LW_IMAGE_TAG=${2}
-export LW_FAIL_CRITICAL=${3}
-export LW_FAIL_HIGH_=${4}
-export LW_FAIL_MEDIUM=${5}
-export LW_FAIL_LOW=${6}
-export LW_FAIL_INFO=${7}
-export LW_FAIL_FIXABLE=${8}
-
 # Run scanner
-lw-scanner evaluate ${LW_IMAGE_NAME} ${LW_IMAGE_TAG} --build-plan ${GITHUB_REPOSITORY} --build-id ${GITHUB_RUN_ID} --data-directory /root
+lw-scanner evaluate ${INPUT_IMAGE_NAME} ${INPUT_IMAGE_TAG} --build-plan ${GITHUB_REPOSITORY} --build-id ${GITHUB_RUN_ID} --data-directory ${GITHUB_WORKSPACE}
 
 # Cecking results
-if [ ${LW_FAIL_FIXABLE} ] && [ $(jq '.fixable_vulnerabilities' /root/evaluations/${LW_IMAGE_NAME}/${LW_IMAGE_TAG}/evaluation_*.json) -ge 1 ]; then
+if [ ${INPUT_FAIL_ONLY_IF_VULNERABILITIES_FIXABLE} ] && [ $(jq '.fixable_vulnerabilities' ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json) -ge 1 ]; then
     echo "At least one fixable vulnerabilty found. Failing action."
     exit 1
-elif [ ${LW_FAIL_CRITICAL} ] && [ $(jq '.critical_vulnerabilities' /root/evaluations/${LW_IMAGE_NAME}/${LW_IMAGE_TAG}/evaluation_*.json) -ge 1 ]; then
+elif [ ${INPUT_FAIL_IF_CRITICAL_VULNERABILITIES_FOUND} ] && [ $(jq '.critical_vulnerabilities' ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json) -ge 1 ]; then
     echo "At least one critical vulnerabilty found. Failing action."
     exit 1
-elif [ ${LW_FAIL_HIGH} ] && [ $(jq '.high_vulnerabilities' /root/evaluations/${LW_IMAGE_NAME}/${LW_IMAGE_TAG}/evaluation_*.json) -ge 1 ]; then
+elif [ ${INPUT_FAIL_IF_HIGH_VULNERABILITIES_FOUND} ] && [ $(jq '.high_vulnerabilities' ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json) -ge 1 ]; then
     echo "At least one high vulnerabilty found. Failing action."
     exit 1
-elif [ ${LW_FAIL_MEDIUM} ] && [ $(jq '.medium_vulnerabilities' /root/evaluations/${LW_IMAGE_NAME}/${LW_IMAGE_TAG}/evaluation_*.json) -ge 1 ]; then
+elif [ ${INPUT_FAIL_IF_MEDIUM_VULNERABILITIES_FOUND} ] && [ $(jq '.medium_vulnerabilities' ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json) -ge 1 ]; then
     echo "At least one medium vulnerabilty found. Failing action."
     exit 1
-elif [ ${LW_FAIL_LOW} ] && [ $(jq '.low_vulnerabilities' /root/evaluations/${LW_IMAGE_NAME}/${LW_IMAGE_TAG}/evaluation_*.json) -ge 1 ]; then
+elif [ ${INPUT_FAIL_IF_LOW_VULNERABILITIES_FOUND} ] && [ $(jq '.low_vulnerabilities' ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json) -ge 1 ]; then
     echo "At least one low vulnerabilty found. Failing action."
     exit 1
-elif [ ${LW_FAIL_INFO} ] && [ $(jq '.info_vulnerabilities' /root/evaluations/${LW_IMAGE_NAME}/${LW_IMAGE_TAG}/evaluation_*.json) -ge 1 ]; then
+elif [ ${INPUT_FAIL_IF_INFO_VULNERABILITIES_FOUND} ] && [ $(jq '.info_vulnerabilities' ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json) -ge 1 ]; then
     echo "At least one info vulnerabilty found. Failing action."
     exit 1
 else
