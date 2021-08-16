@@ -3,17 +3,15 @@
 # Variables rerquired to configure the scan
 export LW_IMAGE_NAME=${1}
 export LW_IMAGE_TAG=${2}
-export GHA_REPO=${3}
-export GHA_RUNID=${4}
-export LW_FAIL_CRITICAL=${5}
-export LW_FAIL_HIGH_=${6}
-export LW_FAIL_MEDIUM=${7}
-export LW_FAIL_LOW=${8}
-export LW_FAIL_INFO=${9}
-export LW_FAIL_FIXABLE=${10}
+export LW_FAIL_CRITICAL=${3}
+export LW_FAIL_HIGH_=${4}
+export LW_FAIL_MEDIUM=${5}
+export LW_FAIL_LOW=${6}
+export LW_FAIL_INFO=${7}
+export LW_FAIL_FIXABLE=${8}
 
 # Run scanner
-lw-scanner evaluate ${LW_IMAGE_NAME} ${LW_IMAGE_TAG} --build-plan ${GHA_REPO} --build-id ${GHA_RUNID} --data-directory /root
+lw-scanner evaluate ${LW_IMAGE_NAME} ${LW_IMAGE_TAG} --build-plan ${GITHUB_REPOSITORY} --build-id ${GITHUB_RUN_ID} --data-directory /root
 
 # Cecking results
 if [ ${LW_FAIL_FIXABLE} ] && [ $(jq '.fixable_vulnerabilities' /root/evaluations/${LW_IMAGE_NAME}/${LW_IMAGE_TAG}/evaluation_*.json) -ge 1 ]; then
