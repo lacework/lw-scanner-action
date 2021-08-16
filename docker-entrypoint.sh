@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/ash
 
 # Run scanner
 ./lw-scanner evaluate
