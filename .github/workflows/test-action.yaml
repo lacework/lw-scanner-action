@@ -1,5 +1,8 @@
 name: test-action
-on: [push]
+on:
+  push:
+    branches:
+    - main
 
 jobs:
   test-action:
@@ -16,7 +19,7 @@ jobs:
         run: docker image pull node:12.18.2-alpine
 
       - name: lw-scanner
-        uses: timarenz/lw-scanner-action@${{ github.sha }}
+        uses: timarenz/lw-scanner-action@$main
         with:
           image_name: nodegoat
           image_tag: 12.18.2-alpine
