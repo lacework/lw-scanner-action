@@ -37,8 +37,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.lacework_account_name }}
-    - ${{ inputs.lacework_access_token }}
     - ${{ inputs.image_name }}
     - ${{ inputs.image_tag }}
     - ${{ github.repository }}
