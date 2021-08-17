@@ -1,4 +1,5 @@
 FROM ubuntu:20.04
+LABEL org.opencontainers.image.source https://github.com/timarenz/lw-scanner-action
 RUN apt-get update \
     && apt-get install -y --no-install-recommends apt-transport-https ca-certificates curl gnupg lsb-release jq \
     && rm -rf /var/lib/apt/lists/*
