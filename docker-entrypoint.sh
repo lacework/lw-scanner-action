@@ -7,7 +7,7 @@ if [ ${INPUT_SCAN_LIBRARY_PACKAGES} == "true" ]; then
 fi
 
 if [ ${INPUT_SAVE_RESULTS_IN_LACEWORK} == "true" ]; then
-    export SCANNER_PARAMETERS+="${SCANNER_PARAMETERS} --save"
+    export SCANNER_PARAMETERS+=" --save"
 fi
 
 /usr/local/bin/lw-scanner image evaluate ${INPUT_IMAGE_NAME} ${INPUT_IMAGE_TAG} --build-plan ${GITHUB_REPOSITORY} --build-id ${GITHUB_RUN_ID} --data-directory ${GITHUB_WORKSPACE} ${SCANNER_PARAMETERS}
