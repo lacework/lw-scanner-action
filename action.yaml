@@ -36,6 +36,10 @@ inputs:
     description: 'Scan for packages vulnerabilities'
     required: false
     default: 'false'
+  save_results_in_lacework:
+    description: 'Save scan results in Lacework'
+    required: false
+    default: 'true'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -49,6 +53,7 @@ runs:
     - ${{ inputs.fail_if_info_vulnerabilities_found }}
     - ${{ inputs.fail_only_if_vulnerabilities_fixable }}
     - ${{ inputs.scan_library_packages }}
+    - ${{ inputs.save_results_in_lacework }}
 branding:
   icon: 'alert-triangle'
   color: 'blue'
