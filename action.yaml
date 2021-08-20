@@ -32,6 +32,10 @@ inputs:
     description: 'Only fail action if found vulnerabilities are fixable.'
     required: false
     default: 'false'
+  scan_library_packages:
+    description: 'Scan for packages vulnerabilities'
+    required: false
+    default: 'false'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -44,6 +48,7 @@ runs:
     - ${{ inputs.fail_if_low_vulnerabilities_found }}
     - ${{ inputs.fail_if_info_vulnerabilities_found }}
     - ${{ inputs.fail_only_if_vulnerabilities_fixable }}
+    - ${{ inputs.scan_library_packages }}
 branding:
   icon: 'alert-triangle'
   color: 'blue'
