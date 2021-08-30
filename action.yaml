@@ -40,6 +40,10 @@ inputs:
     description: 'Save scan results in Lacework'
     required: false
     default: 'true'
+  save_build_report:
+    description: 'Save scan results in html file as workflow artifact'
+    required: false
+    default: 'true'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -54,6 +58,7 @@ runs:
     - ${{ inputs.fail_only_if_vulnerabilities_fixable }}
     - ${{ inputs.scan_library_packages }}
     - ${{ inputs.save_results_in_lacework }}
+    - ${{ inputs.save_build_report }}
 branding:
   icon: 'alert-triangle'
   color: 'blue'

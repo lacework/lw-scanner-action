@@ -10,6 +10,10 @@ if [ ${INPUT_SAVE_RESULTS_IN_LACEWORK} == "true" ]; then
     export SCANNER_PARAMETERS+=" --save"
 fi
 
+if [ ${INPUT_SAVE_BUILD_REPORT} == "true" ]; then
+    export SCANNER_PARAMETERS+=" --html"
+fi
+
 /usr/local/bin/lw-scanner image evaluate ${INPUT_IMAGE_NAME} ${INPUT_IMAGE_TAG} --build-plan ${GITHUB_REPOSITORY} --build-id ${GITHUB_RUN_ID} --data-directory ${GITHUB_WORKSPACE} ${SCANNER_PARAMETERS}
 # Exit if check is failed
 if [ $? != 0 ]; then
