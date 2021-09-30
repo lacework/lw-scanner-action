@@ -7,8 +7,8 @@ This is an example on how the Lacework scanner can be used as GitHub action. Thi
 ### v0.3.0
 
 * Breaking changes
-  * arguments `scan_library_packages` and `save_results_in_lacework` are deprecated and have been repleaced with the offical environment variables  `LW_SCANNER_SCAN_LIBRARY_PACKAGES` and `LW_SCANNER_SAVE_RESULTS`: <https://support.lacework.com/hc/en-us/articles/4403780976275-Integrate-the-Lacework-Inline-Scanner-with-CI-Pipelines#configuration-options-for-image-evaluate>
-  * `save_build_report` arugment name changed to `save_html_report``
+  * arguments `scan_library_packages` and `save_results_in_lacework` are deprecated and have been replaced with the offical environment variables  `LW_SCANNER_SCAN_LIBRARY_PACKAGES` and `LW_SCANNER_SAVE_RESULTS`: <https://support.lacework.com/hc/en-us/articles/4403780976275-Integrate-the-Lacework-Inline-Scanner-with-CI-Pipelines#configuration-options-for-image-evaluate>
+  * `save_build_report` arugment name changed to `save_html_report`
 * Added option to change HTML report file name: `html_report_file_name`
 
 ## Usage

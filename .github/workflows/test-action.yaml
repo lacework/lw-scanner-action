@@ -32,4 +32,4 @@ jobs:
           fail_if_info_vulnerabilities_found: false
           fail_only_if_vulnerabilities_fixable: false
           save_html_report: true
-          # html_report_file_name: myreport.html
+          html_report_file_name: myreport.html
