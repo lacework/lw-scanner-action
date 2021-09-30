@@ -2,7 +2,7 @@ name: test-action
 on:
   push:
     branches:
-    - main
+      - main
 
 jobs:
   test-action:
@@ -10,7 +10,9 @@ jobs:
     env:
       LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
       LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
-
+      LW_SCANNER_SAVE_RESULTS: false
+      LW_SCANNER_SCAN_LIBRARY_PACKAGES: true
+      LW_SCANNER_DISABLE_UPDATES: true
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -29,5 +31,5 @@ jobs:
           fail_if_low_vulnerabilities_found: false
           fail_if_info_vulnerabilities_found: false
           fail_only_if_vulnerabilities_fixable: false
-          scan_library_packages: true
-          save_build_report: true
+          save_html_report: true
+          html_report_file_name: myreport.html
