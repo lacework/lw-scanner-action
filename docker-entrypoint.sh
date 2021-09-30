@@ -8,8 +8,8 @@ export SCANNER_PARAMETERS=""
 if [ ${INPUT_SAVE_HTML_REPORT} == "true" ]; then
     export SCANNER_PARAMETERS+=" --html"
 fi
-if [ ! -z "${INPUT_HTML_FILE_NAME}" ]; then
-    export SCANNER_PARAMETERS+=" --html-file ${INPUT_HTML_FILE_NAME}"
+if [ ! -z "${INPUT_HTML_REPORT_FILE_NAME}" ]; then
+    export SCANNER_PARAMETERS+=" --html-file ${INPUT_HTML_REPORT_FILE_NAME}"
 fi
 
 # Run scanner
