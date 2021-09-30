@@ -1,52 +1,48 @@
-name: 'lw-scanner'
-description: 'Lacework Inline Scanner'
-author: 'Tim Arenz'
+name: "lw-scanner"
+description: "Lacework Inline Scanner"
+author: "Tim Arenz"
 inputs:
   image_name:
-    description: 'Name of the container image you want to scan, for example, node'
+    description: "Name of the container image you want to scan, for example, node"
     required: true
   image_tag:
-    description: 'Tag of the container image you want to scan, for example, 12.18.2-alpine'
+    description: "Tag of the container image you want to scan, for example, 12.18.2-alpine"
     required: true
   fail_if_critical_vulnerabilities_found:
-    description: 'Fail action if critical vulnerabilities are found.'
+    description: "Fail action if critical vulnerabilities are found."
     required: false
-    default: 'true'
+    default: "true"
   fail_if_high_vulnerabilities_found:
-    description: 'Fail action if high vulnerabilities are found.'
+    description: "Fail action if high vulnerabilities are found."
     required: false
-    default: 'true'
+    default: "true"
   fail_if_medium_vulnerabilities_found:
-    description: 'Fail action if medium vulnerabilities are found.'
+    description: "Fail action if medium vulnerabilities are found."
     required: false
-    default: 'true'
+    default: "true"
   fail_if_low_vulnerabilities_found:
-    description: 'Fail action if low vulnerabilities are found.'
+    description: "Fail action if low vulnerabilities are found."
     required: false
-    default: 'false'
+    default: "false"
   fail_if_info_vulnerabilities_found:
-    description: 'Fail action if info vulnerabilities are found.'
+    description: "Fail action if info vulnerabilities are found."
     required: false
-    default: 'false'
+    default: "false"
   fail_only_if_vulnerabilities_fixable:
-    description: 'Only fail action if found vulnerabilities are fixable.'
+    description: "Only fail action if found vulnerabilities are fixable."
     required: false
-    default: 'false'
-  scan_library_packages:
-    description: 'Scan for packages vulnerabilities'
+    default: "false"
+  save_html_report:
+    description: "Save scan results HTML report as workflow artifact"
     required: false
-    default: 'false'
-  save_results_in_lacework:
-    description: 'Save scan results in Lacework'
+    default: "false"
+  html_report_file_name:
+    description: "Specify custom file name for the HTML report, by default the name is OS_TYPE-IMAGE_DIGEST_SHA256.html"
     required: false
-    default: 'true'
-  save_build_report:
-    description: 'Save scan results in html file as workflow artifact'
-    required: false
-    default: 'true'
+    default: ""
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
   args:
     - ${{ inputs.image_name }}
     - ${{ inputs.image_tag }}
@@ -56,9 +52,8 @@ runs:
     - ${{ inputs.fail_if_low_vulnerabilities_found }}
     - ${{ inputs.fail_if_info_vulnerabilities_found }}
     - ${{ inputs.fail_only_if_vulnerabilities_fixable }}
-    - ${{ inputs.scan_library_packages }}
-    - ${{ inputs.save_results_in_lacework }}
-    - ${{ inputs.save_build_report }}
+    - ${{ inputs.save_html_report }}
+    - ${{ inputs.html_report_file_name }}
 branding:
-  icon: 'alert-triangle'
-  color: 'blue'
+  icon: "alert-triangle"
+  color: "blue"
