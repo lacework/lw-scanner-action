@@ -4,6 +4,9 @@ This is an example on how the Lacework scanner can be used as GitHub action. Thi
 
 ## What's new
 
+### v0.3.1
+* Updated Lacework Scanner to version [0.2.1](https://github.com/lacework/lacework-vulnerability-scanner/releases/tag/v0.2.1)
+
 ### v0.3.0
 
 * Breaking changes
