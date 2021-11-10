@@ -21,7 +21,7 @@ jobs:
     build:
         # ...
         steps:
-            - uses: timarenz/lw-scanner-action:v0.3.0
+            - uses: timarenz/lw-scanner-action:v0.3.1
               name: Scan container images for vulnerabitilies using Lacework
               env:
                 # Set Lacework account name and access token as environment variable. This can also be done on the job level.
