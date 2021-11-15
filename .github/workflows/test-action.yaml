@@ -7,24 +7,24 @@ on:
 jobs:
   test-action:
     runs-on: ubuntu-latest
-    env:
-      LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
-      LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
-      LW_SCANNER_SAVE_RESULTS: false
-      LW_SCANNER_SCAN_LIBRARY_PACKAGES: true
-      LW_SCANNER_DISABLE_UPDATES: true
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
 
       - name: Pull Docker image
-        run: docker image pull node:12.18.2-alpine
+        run: docker image pull ghcr.io/timarenz/vulnerable-container:v0.0.1
 
       - name: lw-scanner
         uses: timarenz/lw-scanner-action@main
+        env:
+          LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
+          LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
+          LW_SCANNER_SAVE_RESULTS: false
+          LW_SCANNER_SCAN_LIBRARY_PACKAGES: true
+          LW_SCANNER_DISABLE_UPDATES: true
         with:
-          image_name: node
-          image_tag: 12.18.2-alpine
+          image_name: ghcr.io/timarenz/vulnerable-container
+          image_tag: v0.0.1
           fail_if_critical_vulnerabilities_found: false
           fail_if_high_vulnerabilities_found: false
           fail_if_medium_vulnerabilities_found: false
