@@ -6,10 +6,10 @@ export LW_SCANNER_DISABLE_UPDATES=${LW_SCANNER_DISABLE_UPDATES:-true}
 # Add parameters based on arguments
 export SCANNER_PARAMETERS=""
 if [ ${INPUT_SAVE_HTML_REPORT} == "true" ]; then
-    export SCANNER_PARAMETERS+=" --html"
+    export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --html"
 fi
 if [ ! -z "${INPUT_HTML_REPORT_FILE_NAME}" ]; then
-    export SCANNER_PARAMETERS+=" --html-file ${INPUT_HTML_REPORT_FILE_NAME}"
+    export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --html-file ${INPUT_HTML_REPORT_FILE_NAME}"
 fi
 
 # Run scanner
