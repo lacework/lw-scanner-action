@@ -4,6 +4,8 @@ This is an example on how the Lacework scanner can be used as GitHub action. Thi
 
 ## What's new
 
+### v0.3.2
+* Changed base image to the official docker image
 ### v0.3.1
 * Updated Lacework Scanner to version [0.2.1](https://github.com/lacework/lacework-vulnerability-scanner/releases/tag/v0.2.1)
 
@@ -21,7 +23,7 @@ jobs:
     build:
         # ...
         steps:
-            - uses: timarenz/lw-scanner-action:v0.3.1
+            - uses: timarenz/lw-scanner-action:v0.3.2
               name: Scan container images for vulnerabitilies using Lacework
               env:
                 # Set Lacework account name and access token as environment variable. This can also be done on the job level.

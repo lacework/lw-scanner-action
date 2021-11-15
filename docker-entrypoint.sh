@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Disable update prompt for lw-scanner if newer version is available unless explicitly set
 export LW_SCANNER_DISABLE_UPDATES=${LW_SCANNER_DISABLE_UPDATES:-true}
