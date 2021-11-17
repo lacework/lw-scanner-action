@@ -42,7 +42,7 @@ inputs:
     default: ""
   use_policy:
     description: "Use Lacework policy management feature (beta). This will ignore all `fail_...` parameters."
-    required: true
+    required: false
     default: "false"
 runs:
   using: "docker"
