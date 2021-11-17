@@ -5,7 +5,9 @@ This is an example on how the Lacework scanner can be used as GitHub action. Thi
 ## What's new
 
 ### v0.4.0
-* Add support for Lacework policy management feature (beta). To enable set option `use_policy` option to `true`. As a result all `fail_...` parameters will be ignored.
+* Updated Lacework Scanner to version [0.2.2](https://github.com/lacework/lacework-vulnerability-scanner/releases/tag/v0.2.2)
+* Add support for Lacework policy management feature (beta). To enable set `use_policy` parameter to `true`. As a result all `fail_...` parameters will be ignored.
+* Added overview of exit codes
 
 ### v0.3.1
 * Updated Lacework Scanner to version [0.2.1](https://github.com/lacework/lacework-vulnerability-scanner/releases/tag/v0.2.1)
@@ -61,3 +63,25 @@ jobs:
                 # Enable Lacework policy management features. If this is set to `true` all `fail_...` parameters will be ignored.
                 use_policy: false
 ```
+
+## Exit codes
+
+The following exit codes are introduced with version 0.4.0. Prior version all fail with exit code 1 on violations.
+Exit codes 11-16 are used if `use_policy` is enabled. If not, error codes 21-22 are used.
+
+| Exit code | Description                        |
+|----------:|------------------------------------|
+| 0         | Scan successful, no violations     |
+| 1         | General error, scan not succesful  |
+| 11        | General policy violation           |
+| 12        | Critical severity policy violation |
+| 13        | High severity policy violation     |
+| 14        | Medium severity policy violation   |
+| 15        | Low severity policy violation      |
+| 16        | Info severity policy violation     |
+| 21        | Fixable vulnerability found        |
+| 22        | Critical vulnerability found       |
+| 23        | High vulnerability found           |
+| 24        | Medium vulnerability found         |
+| 25        | Low vulnerability found            |
+| 26        | Info vulnerability found           |

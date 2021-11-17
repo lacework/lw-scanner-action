@@ -28,22 +28,22 @@ fi
 # Checking results
 if [ ${INPUT_USE_POLICY} = "false" ] && [ ${INPUT_FAIL_ONLY_IF_VULNERABILITIES_FIXABLE} = "true" ] && [ $(cat ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json | jq '.fixable_vulnerabilities') -ge 1 ]; then
     echo "At least one fixable vulnerabilty found."
-    exit 1
+    exit 21
 elif [ ${INPUT_USE_POLICY} = "false" ] && [ ${INPUT_FAIL_IF_CRITICAL_VULNERABILITIES_FOUND} = "true" ] && [ $(cat ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json | jq '.critical_vulnerabilities') -ge 1 ]; then
     echo "At least one critical vulnerabilty found."
-    exit 1
+    exit 22
 elif [ ${INPUT_USE_POLICY} = "false" ] && [ ${INPUT_FAIL_IF_HIGH_VULNERABILITIES_FOUND} = "true" ] && [ $(cat ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json | jq '.high_vulnerabilities') -ge 1 ]; then
     echo "At least one high vulnerabilty found."
-    exit 1
+    exit 23
 elif [ ${INPUT_USE_POLICY} = "false" ] && [ ${INPUT_FAIL_IF_MEDIUM_VULNERABILITIES_FOUND} = "true" ] && [ $(cat ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json | jq '.medium_vulnerabilities') -ge 1 ]; then
     echo "At least one medium vulnerabilty found."
-    exit 1
+    exit 24
 elif [ ${INPUT_USE_POLICY} = "false" ] && [ ${INPUT_FAIL_IF_LOW_VULNERABILITIES_FOUND} = "true" ] && [ $(cat ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json | jq '.low_vulnerabilities') -ge 1 ]; then
     echo "At least one low vulnerabilty found."
-    exit 1
+    exit 25
 elif [ ${INPUT_USE_POLICY} = "false" ] && [ ${INPUT_FAIL_IF_INFO_VULNERABILITIES_FOUND} = "true" ] && [ $(cat ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json | jq '.info_vulnerabilities') -ge 1 ]; then
     echo "At least one info vulnerabilty found."
-    exit 1
+    exit 26
 else
     exit ${LW_SCANNER_EXIT_CODE}
 fi
