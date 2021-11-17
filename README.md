@@ -66,8 +66,8 @@ jobs:
 
 ## Exit codes
 
-The following exit codes are introduced with version 0.4.0. Prior version all fail with exit code 1 on violations.
-Exit codes 11-16 are used if `use_policy` is enabled. If not, error codes 21-22 are used.
+The following exit codes are introduced with version 0.4.0. Prior version all fail with exit code `1` on violations.
+Exit codes `11-16` are used if `use_policy` is enabled. If not, error codes `21-22` are used.
 
 | Exit code | Description                        |
 |----------:|------------------------------------|
