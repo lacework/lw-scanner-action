@@ -17,7 +17,7 @@ fi
 
 # Skip custom fail actions if Lacework policies are used
 
-if [ ${INPUT_USE_POLICY} = "true" ]
+if [ ${INPUT_USE_POLICY} = "true" ]; then
 
     # Exit if check is failed
     if [ $? != 0 ]; then
