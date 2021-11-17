@@ -1,0 +1,27 @@
+name: test-action-policy
+on: push
+
+jobs:
+  test-action-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Pull Docker image
+        run: docker image pull ghcr.io/timarenz/vulnerable-container:v0.0.1
+
+      - name: lw-scanner
+        uses: ./
+        env:
+          LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN_POLICY }}
+          LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
+          LW_SCANNER_SAVE_RESULTS: false
+          LW_SCANNER_SCAN_LIBRARY_PACKAGES: true
+          LW_SCANNER_DISABLE_UPDATES: true
+        with:
+          image_name: ghcr.io/timarenz/vulnerable-container
+          image_tag: v0.0.1
+          save_html_report: true
+          html_report_file_name: myreport.html
+          use_policy: true

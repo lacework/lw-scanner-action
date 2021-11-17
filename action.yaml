@@ -40,6 +40,10 @@ inputs:
     description: "Specify custom file name for the HTML report, by default the name is OS_TYPE-IMAGE_DIGEST_SHA256.html"
     required: false
     default: ""
+  use_policy:
+    description: "Use Lacework policy management feature (beta). This will ignore all `fail_...` parameters."
+    required: true
+    default: "false"
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -54,6 +58,7 @@ runs:
     - ${{ inputs.fail_only_if_vulnerabilities_fixable }}
     - ${{ inputs.save_html_report }}
     - ${{ inputs.html_report_file_name }}
+    - ${{ inputs.use_policy }}
 branding:
   icon: "alert-triangle"
   color: "blue"

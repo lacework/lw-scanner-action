@@ -4,6 +4,9 @@ This is an example on how the Lacework scanner can be used as GitHub action. Thi
 
 ## What's new
 
+### v0.4.0
+* Add support for Lacework policy management feature (beta). To enable set option `use_policy` option to `true`. As a result all `fail_...` parameters will be ignored.
+
 ### v0.3.1
 * Updated Lacework Scanner to version [0.2.1](https://github.com/lacework/lacework-vulnerability-scanner/releases/tag/v0.2.1)
 
@@ -21,7 +24,7 @@ jobs:
     build:
         # ...
         steps:
-            - uses: timarenz/lw-scanner-action:v0.3.1
+            - uses: timarenz/lw-scanner-action:v0.4.0
               name: Scan container images for vulnerabitilies using Lacework
               env:
                 # Set Lacework account name and access token as environment variable. This can also be done on the job level.
@@ -36,9 +39,9 @@ jobs:
                 LW_SCANNER_DISABLE_UPDATES: true
               with:
                 # Name of the image you want to scan, examples: nginx, ghcr.io/timarenz/lw-scanner, codercom/code-server, node
-                image_name: node
+                image_name: ghcr.io/timarenz/vulnerable-container
                 # Tag of the image you want to scan, for example, latest, v2.0.1, 3.11.1, 12.18.2-alpine
-                image_tag: 12.18.2-alpine
+                image_tag: v0.0.1
                 # Fail this action if critical vulnerabilities found (default is true).
                 fail_if_critical_vulnerabilities_found: true
                 # Fail this action if high vulnerabilities found (default is true).
@@ -55,4 +58,6 @@ jobs:
                 save_html_report: false
                 # Customize file name of the HTML report (default is OS_TYPE-IMAGE_DIGEST_SHA256.html)
                 html_report_file_name: myreport.html
+                # Enable Lacework policy management features. If this is set to `true` all `fail_...` parameters will be ignored.
+                use_policy: false
 ```
