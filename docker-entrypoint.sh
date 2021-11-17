@@ -5,6 +5,9 @@ export LW_SCANNER_DISABLE_UPDATES=${LW_SCANNER_DISABLE_UPDATES:-true}
 
 # Add parameters based on arguments
 export SCANNER_PARAMETERS=""
+if [ ${INPUT_USE_POLICY} = "true" ]; then
+    export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --policy"
+fi
 if [ ${INPUT_SAVE_HTML_REPORT} = "true" ]; then
     export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --html"
 fi
