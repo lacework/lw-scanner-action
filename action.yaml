@@ -2,63 +2,60 @@ name: "lw-scanner"
 description: "Lacework Inline Scanner"
 author: "Tim Arenz"
 inputs:
-  image_name:
-    description: "Name of the container image you want to scan, for example, node"
+  LW_ACCOUNT_NAME:
+    description: "Your Lacework account name. For example, if your login URL is mycompany.lacework.net, the account name is mycompany."
     required: true
-  image_tag:
-    description: "Tag of the container image you want to scan, for example, 12.18.2-alpine"
+  LW_ACCESS_TOKEN:
+    description: "Authorization token. Copy and paste the token from the inline scanner integration created in the Lacework console."
     required: true
-  fail_if_critical_vulnerabilities_found:
-    description: "Fail action if critical vulnerabilities are found."
+  IMAGE_NAME:
+    description: "Name of the container image you want to scan, for example, `node`."
+    required: true
+  IMAGE_TAG:
+    description: "Tag of the container image you want to scan, for example, `12.18.2-alpine`."
+    required: true
+  SCAN_LIBRARY_PACKAGES:
+    description: "Also scan software packages. (Default: true)"
     required: false
     default: "true"
-  fail_if_high_vulnerabilities_found:
-    description: "Fail action if high vulnerabilities are found."
+  SAVE_RESULTS_IN_LACEWORK:
+    description: "Save results to Lacework. (Default: false)"
+    required: false
+    default: "false"
+  SAVE_BUILD_REPORT:
+    description: "Saves the evaluation report as a local HTML file. (Default: false)"
+    required: false
+    default: "false"
+  BUILD_REPORT_FILE_NAME:
+    description: "Specify custom file name for the HTML evalutation report, by default the name is OS_TYPE-IMAGE_DIGEST_SHA256.html."
+    required: false 
+  FAIL_BUILD:
+    description: "Fail the build of vulnerabilities are discovered according to the threshold. (Default: true)"
     required: false
     default: "true"
-  fail_if_medium_vulnerabilities_found:
-    description: "Fail action if medium vulnerabilities are found."
-    required: false
-    default: "true"
-  fail_if_low_vulnerabilities_found:
-    description: "Fail action if low vulnerabilities are found."
-    required: false
-    default: "false"
-  fail_if_info_vulnerabilities_found:
-    description: "Fail action if info vulnerabilities are found."
-    required: false
-    default: "false"
-  fail_only_if_vulnerabilities_fixable:
-    description: "Only fail action if found vulnerabilities are fixable."
-    required: false
-    default: "false"
-  save_html_report:
-    description: "Save scan results HTML report as workflow artifact"
-    required: false
-    default: "false"
-  html_report_file_name:
-    description: "Specify custom file name for the HTML report, by default the name is OS_TYPE-IMAGE_DIGEST_SHA256.html"
-    required: false
-    default: ""
-  use_policy:
-    description: "Use Lacework policy management feature (beta). This will ignore all `fail_...` parameters."
+  SEVERITY_THRESHOLD:
+    description: "Severity threshold that will fail the build: info, low, medium, high, critical. (Default: medium)"
+    required: false 
+    default: "medium"
+  USE_POLICY:
+    description: "Use the Lacework policy managed feature (beta). If enabled this overwrites `FAIL_BUILD`and `SEVERITY_THRESHOLD`. (Default: false)"
     required: false
     default: "false"
 runs:
   using: "docker"
   image: "Dockerfile"
   args:
-    - ${{ inputs.image_name }}
-    - ${{ inputs.image_tag }}
-    - ${{ inputs.fail_if_critical_vulnerabilities_found }}
-    - ${{ inputs.fail_if_high_vulnerabilities_found }}
-    - ${{ inputs.fail_if_medium_vulnerabilities_found }}
-    - ${{ inputs.fail_if_low_vulnerabilities_found }}
-    - ${{ inputs.fail_if_info_vulnerabilities_found }}
-    - ${{ inputs.fail_only_if_vulnerabilities_fixable }}
-    - ${{ inputs.save_html_report }}
-    - ${{ inputs.html_report_file_name }}
-    - ${{ inputs.use_policy }}
+    - ${{ inputs.LW_ACCOUNT_NAME }}
+    - ${{ inputs.LW_ACCESS_TOKEN }}
+    - ${{ inputs.IMAGE_NAME }}
+    - ${{ inputs.IMAGE_TAG }}
+    - ${{ inputs.SCAN_LIBRARY_PACKAGES }}
+    - ${{ inputs.SAVE_RESULTS_IN_LACEWORK }}
+    - ${{ inputs.SAVE_BUILD_REPORT }}
+    - ${{ inputs.BUILD_REPORT_FILE_NAME }}
+    - ${{ inputs.FAIL_BUILD }}
+    - ${{ inputs.SEVERITY_THRESHOLD }}
+    - ${{ inputs.USE_POLICY }}
 branding:
   icon: "alert-triangle"
   color: "blue"
