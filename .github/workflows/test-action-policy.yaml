@@ -15,8 +15,8 @@ jobs:
         uses: ./
         continue-on-error: true
         with:
-          LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
           LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
+          LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN_POLICY }}
           IMAGE_NAME: ghcr.io/timarenz/vulnerable-container
           IMAGE_TAG: v0.0.1
           SAVE_BUILD_REPORT: true
