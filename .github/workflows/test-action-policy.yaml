@@ -14,15 +14,11 @@ jobs:
       - name: lw-scanner
         uses: ./
         continue-on-error: true
-        env:
-          LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN_POLICY }}
-          LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
-          LW_SCANNER_SAVE_RESULTS: false
-          LW_SCANNER_SCAN_LIBRARY_PACKAGES: true
-          LW_SCANNER_DISABLE_UPDATES: true
         with:
-          image_name: ghcr.io/timarenz/vulnerable-container
-          image_tag: v0.0.1
-          save_html_report: true
-          html_report_file_name: myreport.html
-          use_policy: true
+          LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
+          LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
+          IMAGE_NAME: ghcr.io/timarenz/vulnerable-container
+          IMAGE_TAG: v0.0.1
+          SAVE_BUILD_REPORT: true
+          BUILD_REPORT_FILE_NAME: report.html
+          USE_POLICY: true
