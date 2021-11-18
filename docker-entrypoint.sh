@@ -33,7 +33,7 @@ export LW_SCANNER_EXIT_CODE=$?
 
 # Exit if check is failed and policy feature not used
 if [ ${INPUT_USE_POLICY} = "false" ] && [ ${LW_SCANNER_EXIT_CODE} != 0 ]; then
-    echo "Vulnerability scan failed. Failing action as security can not be guaranteed."
+    echo "Vulnerability scan failed. Failing action as security can not be guaranteed. Exiting with code 1"
     exit 1
 fi
 
@@ -44,35 +44,35 @@ if [ ${INPUT_USE_POLICY} = "false" ] && [ ${INPUT_FAIL_BUILD} = "true" ]; then
 	critical)
         CRITICAL_VULNS_FOUND=$(cat ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json | jq '.cve.critical_vulnerabilities')
         if [ ${CRITICAL_VULNS_FOUND} -ge 1 ]; then
-            echo "${CRITICAL_VULNS_FOUND} CRITICAL vulnerabilities found."
+            echo "${CRITICAL_VULNS_FOUND} CRITICAL vulnerabilities found. Exiting with code 1"
             exit 1
         fi
 		;;
 	high)
         HIGH_VULNS_FOUND=$(cat ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json | jq '.cve.high_vulnerabilities')
         if [  ${HIGH_VULNS_FOUND} -ge 1 ]; then
-            echo "${HIGH_VULNS_FOUND} HIGH vulnerabilities found."
+            echo "${HIGH_VULNS_FOUND} HIGH vulnerabilities found. Exiting with code 1"
             exit 1
         fi
 		;;
 	medium)
         MEDIUM_VULNS_FOUND=$(cat ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json | jq '.cve.medium_vulnerabilities')
         if [  ${MEDIUM_VULNS_FOUND} -ge 1 ]; then
-            echo "${MEDIUM_VULNS_FOUND} MEDIUM vulnerabilities found."
+            echo "${MEDIUM_VULNS_FOUND} MEDIUM vulnerabilities found. Exiting with code 1"
             exit 1
         fi
 		;;
 	low)
         LOW_VULNS_FOUND=$(cat ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json | jq '.cve.low_vulnerabilities')
         if [  ${LOW_VULNS_FOUND} -ge 1 ]; then
-            echo "${LOW_VULNS_FOUND} LOW vulnerabilities found."
+            echo "${LOW_VULNS_FOUND} LOW vulnerabilities found. Exiting with code 1"
             exit 1
         fi
 		;;
 	info)
         INFO_VULNS_FOUND=$(cat ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json | jq '.cve.INFO_vulnerabilities')
         if [  ${INFO_VULNS_FOUND} -ge 1 ]; then
-            echo "${INFO_VULNS_FOUND} INFO vulnerabilities found."
+            echo "${INFO_VULNS_FOUND} INFO vulnerabilities found. Exiting with code 1"
             exit 1
         fi
 		;;
