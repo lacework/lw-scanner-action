@@ -39,7 +39,7 @@ if [ ${INPUT_USE_POLICY} = "false" ] && [ ${INPUT_FAIL_BUILD} = "true" ]; then
 # Check if vulnerabilites related to the severity threshold are found and if so fail action
   case $INPUT_SEVERITY_THRESHOLD in
 	critical)
-        CRITICAL_VULNS_FOUND=$(cat ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json | jq '.cve.fixable_vulnerabilities')
+        CRITICAL_VULNS_FOUND=$(cat ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json | jq '.cve.critical_vulnerabilities')
         if [ ${CRITICAL_VULNS_FOUND} -ge 1 ]; then
             echo "${CRITICAL_VULNS_FOUND} CRITICAL vulnerabilities found."
             exit 1
