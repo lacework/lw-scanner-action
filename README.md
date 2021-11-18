@@ -6,8 +6,9 @@ This is an example on how the Lacework scanner can be used as GitHub action. Thi
 
 ### v0.5.0
 * Changed variables and how this action works to make the user expirence consitent across differnt CI platforms like Bitbucket, GitHub Actions, CircleCI, etc.
+* Changed exit codes, action will fail with exit code 1 regardles of the severity of the vulnerability / policy.
 * Fix evalution of found vulnerabilites as json schema changed.
-
+* Remove option to only fail if fixable, as of today it is not mapped to specific severity. If this functionality is required it can be archived using the new policy feature.
 
 ### v0.4.0
 * Updated Lacework Scanner to version [0.2.2](https://github.com/lacework/lacework-vulnerability-scanner/releases/tag/v0.2.2)
@@ -33,43 +34,34 @@ jobs:
         steps:
             - uses: timarenz/lw-scanner-action:v0.4.0
               name: Scan container images for vulnerabitilies using Lacework
-              env:
-                # Set Lacework account name and access token as environment variable. This can also be done on the job level.
-                # More information about those variables can be found in the documentation: https://support.lacework.com/hc/en-us/articles/1500001777821-Integrate-Inline-Scanner#configuration-commands
-                LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }} 
-                LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
-                # When set to true, this will save evaluation results to the Lacework Console (default is false).
-                LW_SCANNER_SAVE_RESULTS: false
-                # When set to true, this will evaluate the image for non-OS library packages (default is false).
-                LW_SCANNER_SCAN_LIBRARY_PACKAGES: false
-                # When set to true, this will disable the update prompt at the end of the output if there is a new version of the Lacework scanner available (default is true).
-                LW_SCANNER_DISABLE_UPDATES: true
               with:
-                # Name of the image you want to scan, examples: nginx, ghcr.io/timarenz/lw-scanner, codercom/code-server, node
-                image_name: ghcr.io/timarenz/vulnerable-container
-                # Tag of the image you want to scan, for example, latest, v2.0.1, 3.11.1, 12.18.2-alpine
-                image_tag: v0.0.1
-                # Fail this action if critical vulnerabilities found (default is true).
-                fail_if_critical_vulnerabilities_found: true
-                # Fail this action if high vulnerabilities found (default is true).
-                fail_if_high_vulnerabilities_found: true
-                # Fail this action if medium vulnerabilities found (default is true).
-                fail_if_medium_vulnerabilities_found: true
-                # Fail this action if low vulnerabilities found (default is false).
-                fail_if_low_vulnerabilities_found: false
-                # Fail this action if info vulnerabilities found (default is false).
-                fail_if_info_vulnerabilities_found: false
-                # Fail this action only if fixable vulnerabilities found (default is false).
-                fail_only_if_vulnerabilities_fixable: true
-                # Save HTML report of the vulnerability scan as artifact (default is false).
-                save_html_report: false
-                # Customize file name of the HTML report (default is OS_TYPE-IMAGE_DIGEST_SHA256.html)
-                html_report_file_name: myreport.html
-                # Enable Lacework policy management features. If this is set to `true` all `fail_...` parameters will be ignored.
-                use_policy: false
+                # Your Lacework account name. For example, if your login URL is mycompany.lacework.net, the account name is mycompany.
+                LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }} 
+                # Authorization token. Copy and paste the token from the inline scanner integration created in the Lacework console.
+                LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
+                # Name of the container image you want to scan, for example, `node`.
+                IMAGE_NAME: ghcr.io/timarenz/vulnerable-container
+                # Tag of the container image you want to scan, for example, `12.18.2-alpine`.
+                IMAGE_TAG: v0.0.1
+                # Also scan software packages. (Default: true)
+                SCAN_LIBRARY_PACKAGES: true
+                # Save results to Lacework. (Default: false)
+                SAVE_RESULTS_IN_LACEWORK: false
+                # Saves the evaluation report as a local HTML file. (Default: false)
+                SAVE_BUILD_REPORT: true
+                # Specify custom file name for the HTML evalutation report, by default the name is OS_TYPE-IMAGE_DIGEST_SHA256.html.
+                BUILD_REPORT_FILE_NAME: myreport.html
+                # Fail the build of vulnerabilities are discovered according to the threshold. (Default: true)
+                FAIL_BUILD: true
+                # Severity threshold that will fail the build: info, low, medium, high, critical. (Default: medium)
+                SEVERITY_THRESHOLD: medium
+                # Use the Lacework policy managed feature (beta). If enabled this overwrites `FAIL_BUILD`and `SEVERITY_THRESHOLD`. (Default: false)
+                USE_POLICY: false
 ```
 
 ## Exit codes
+
+With version `0.5.0` the only exit code used is `1` regardless of the severity of the vulnerability / violation.
 
 The following exit codes are introduced with version 0.4.0. Prior version all fail with exit code `1` on violations.
 Exit codes `11-16` are used if `use_policy` is enabled. If not, error codes `21-22` are used.
