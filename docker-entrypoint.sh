@@ -24,6 +24,9 @@ if [ ${INPUT_USE_POLICY} = "true" ]; then
     export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --policy --fail-on-violation-exit-code 1"
 fi
 
+# Remove old scanner evaluation, if cached somehow
+rm ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json || true
+
 # Run scanner
 /usr/local/bin/lw-scanner image evaluate ${INPUT_IMAGE_NAME} ${INPUT_IMAGE_TAG} --build-plan ${GITHUB_REPOSITORY} --build-id ${GITHUB_RUN_ID} --data-directory ${GITHUB_WORKSPACE} ${SCANNER_PARAMETERS}
 export LW_SCANNER_EXIT_CODE=$?

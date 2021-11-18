@@ -4,6 +4,11 @@ This is an example on how the Lacework scanner can be used as GitHub action. Thi
 
 ## What's new
 
+### v0.5.0
+* Changed variables and how this action works to make the user expirence consitent across differnt CI platforms like Bitbucket, GitHub Actions, CircleCI, etc.
+* Fix evalution of found vulnerabilites as json schema changed.
+
+
 ### v0.4.0
 * Updated Lacework Scanner to version [0.2.2](https://github.com/lacework/lacework-vulnerability-scanner/releases/tag/v0.2.2)
 * Add support for Lacework policy management feature (beta). To enable set `use_policy` parameter to `true`. As a result all `fail_...` parameters will be ignored.
