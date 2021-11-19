@@ -4,6 +4,10 @@ This is an example on how the Lacework scanner can be used as GitHub action. Thi
 
 ## What's new
 
+### v0.5.1
+* Reintroduce fail only if fixable vulnerabilities found
+* Update to action description
+
 ### v0.5.0
 * Changed variables and how this action works to make the user expirence consitent across differnt CI platforms like Bitbucket, GitHub Actions, CircleCI, etc.
 * Changed exit codes, action will fail with exit code 1 regardles of the severity of the vulnerability / policy.
@@ -32,7 +36,7 @@ jobs:
     build:
         # ...
         steps:
-            - uses: timarenz/lw-scanner-action:v0.4.0
+            - uses: timarenz/lw-scanner-action:v0.5.1
               name: Scan container images for vulnerabitilies using Lacework
               with:
                 # Your Lacework account name. For example, if your login URL is mycompany.lacework.net, the account name is mycompany.
@@ -53,7 +57,7 @@ jobs:
                 BUILD_REPORT_FILE_NAME: myreport.html
                 # Fail the build of vulnerabilities are discovered according to the threshold. (Default: true)
                 FAIL_BUILD: true
-                # Severity threshold that will fail the build: info, low, medium, high, critical. (Default: medium)
+                # Severity threshold that will fail the build: info, low, medium, high, critical, fixable. (Default: medium)
                 SEVERITY_THRESHOLD: medium
                 # Use the Lacework policy managed feature (beta). If enabled this overwrites `FAIL_BUILD`and `SEVERITY_THRESHOLD`. (Default: false)
                 USE_POLICY: false

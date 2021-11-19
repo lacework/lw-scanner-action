@@ -34,7 +34,7 @@ inputs:
     required: false
     default: "true"
   SEVERITY_THRESHOLD:
-    description: "Severity threshold that will fail the build: info, low, medium, high, critical. (Default: medium)"
+    description: "Severity threshold that will fail the build: info, low, medium, high, critical, fixable. (Default: medium)"
     required: false
     default: "medium"
   USE_POLICY:
