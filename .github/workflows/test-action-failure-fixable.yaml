@@ -14,6 +14,7 @@ jobs:
       - name: lw-scanner
         id: lw-scanner
         uses: ./
+        continue-on-error: true
         with:
           LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
           LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
@@ -21,4 +22,9 @@ jobs:
           IMAGE_TAG: v0.0.1
           SAVE_BUILD_REPORT: true
           BUILD_REPORT_FILE_NAME: report.html
-          FAIL_BUILD: false
+          FAIL_BUILD: true
+          SEVERITY_THRESHOLD: fixable
+
+      - name: Check if vulnerabilites were found and step failed.
+        if: steps.lw-scanner.outcome == 'failure'
+        run: echo "Vulnerabilities found and step failed succesfully." && exit 1
