@@ -1,5 +1,5 @@
 name: "lw-scanner"
-description: "Lacework Inline Scanner"
+description: "Scan container images for vulnerabilities with Lacework's Inline Scanner"
 author: "Tim Arenz"
 inputs:
   LW_ACCOUNT_NAME:
@@ -28,14 +28,14 @@ inputs:
     default: "false"
   BUILD_REPORT_FILE_NAME:
     description: "Specify custom file name for the HTML evalutation report, by default the name is OS_TYPE-IMAGE_DIGEST_SHA256.html."
-    required: false 
+    required: false
   FAIL_BUILD:
     description: "Fail the build of vulnerabilities are discovered according to the threshold. (Default: true)"
     required: false
     default: "true"
   SEVERITY_THRESHOLD:
     description: "Severity threshold that will fail the build: info, low, medium, high, critical. (Default: medium)"
-    required: false 
+    required: false
     default: "medium"
   USE_POLICY:
     description: "Use the Lacework policy managed feature (beta). If enabled this overwrites `FAIL_BUILD`and `SEVERITY_THRESHOLD`. (Default: false)"
