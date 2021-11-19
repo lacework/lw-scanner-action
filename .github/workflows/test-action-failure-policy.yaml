@@ -1,8 +1,8 @@
-name: test-action-policy
+name: test-action-failure-policy
 on: [push, workflow_dispatch]
 
 jobs:
-  test-action-policy:
+  test-action-failure-policy:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -26,4 +26,4 @@ jobs:
 
       - name: Check if vulnerabilites were found and step failed.
         if: steps.lw-scanner.outcome == 'failure'
-        run: echo "Vulnerabilities found and step failed succesfully." && exit 1
+        run: echo "Vulnerabilities found and step failed succesfully." && exit 0

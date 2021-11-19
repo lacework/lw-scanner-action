@@ -1,8 +1,8 @@
-name: test-action
+name: test-action-failure-critical
 on: [push, workflow_dispatch]
 
 jobs:
-  test-action:
+  test-action-failure-critical:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -27,4 +27,4 @@ jobs:
 
       - name: Check if vulnerabilites were found and step failed.
         if: steps.lw-scanner.outcome == 'failure'
-        run: echo "Vulnerabilities found and step failed succesfully." && exit 1
+        run: echo "Vulnerabilities found and step failed succesfully." && exit 0
