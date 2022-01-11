@@ -9,7 +9,7 @@ export LW_SCANNER_DISABLE_UPDATES=${LW_SCANNER_DISABLE_UPDATES:-true}
 # Add parameters based on arguments
 export SCANNER_PARAMETERS=""
 if [ ${INPUT_SCAN_LIBRARY_PACKAGES} = "false" ]; then
-    export LW_SCANNER_SCAN_LIBRARY_PACKAGES=false
+    export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --disable-library-package-scanning"
 fi
 if [ ${INPUT_SAVE_RESULTS_IN_LACEWORK} = "true" ]; then
     export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --save"

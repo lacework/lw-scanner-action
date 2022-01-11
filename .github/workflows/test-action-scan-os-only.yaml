@@ -1,8 +1,8 @@
-name: test-action-failure-critical
+name: test-action-scan-os-only
 on: [push, workflow_dispatch]
 
 jobs:
-  test-action-failure-critical:
+  test-action-scan-os-only:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -21,7 +21,7 @@ jobs:
           IMAGE_NAME: ghcr.io/timarenz/vulnerable-container
           IMAGE_TAG: v0.0.1
           SCAN_LIBRARY_PACKAGES: false
-          FAIL_BUILD: false
+          FAIL_BUILD: true
 
       - name: Check if vulnerabilites were found and step failed.
         if: steps.lw-scanner.outcome == 'failure'
