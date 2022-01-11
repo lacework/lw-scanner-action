@@ -3,6 +3,9 @@
 This is an example on how the Lacework scanner can be used as GitHub action. This is provided as a technical demostration without any guarantees. Also, this is not an official Lacework project.
 
 ## What's new
+### v0.6.0
+* Update lw-scanner to version 0.2.5
+* Change logic around scanning non-os packages by default
 
 ### v0.5.1
 * Reintroduce fail only if fixable vulnerabilities found
