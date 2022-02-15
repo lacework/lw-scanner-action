@@ -1,3 +1,3 @@
-FROM ghcr.io/timarenz/lw-scanner:v0.2.5
+FROM ipcrm/inline-scanner-temp:latest
 COPY ./docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
