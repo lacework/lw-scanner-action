@@ -202,7 +202,7 @@ generate_release_notes() {
 push_release() {
   log "commiting and pushing the release to github"
   _version_no_tag=$(echo $VERSION | awk -F. '{printf("%d.%d.%d", $1, $2, $3)}')
-  if [ "$CI" != "" ]; then
+  if [ "${CI:-}" != "" ]; then
     git config --global user.email $git_email
     git config --global user.name $git_user
     git config --global user.signingkey $GPG_SIGNING_KEY
@@ -297,7 +297,7 @@ bump_version() {
   fi
 
   log "commiting and pushing the vertion bump to github"
-  if [ "$CI" != "" ]; then
+  if [ "${CI:-}" != "" ]; then
     git config --global user.email $git_email
     git config --global user.name $git_user
     git config --global user.signingkey $GPG_SIGNING_KEY
