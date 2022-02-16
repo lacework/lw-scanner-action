@@ -1,6 +1,8 @@
-[![test-action](https://github.com/lacework/lw-scanner-action/actions/workflows/test-action.yaml/badge.svg?branch=main)](https://github.com/lacework/lw-scanner-action/actions/workflows/test-action.yaml)
+<img src="https://techally-content.s3-us-west-1.amazonaws.com/public-content/lacework_logo_full.png" width="600">
 
-# lw-scanner-action - Lacework Inline Scanner GitHub Action
+# Lacework Inline Scanner GitHub Action
+
+[![test-action](https://github.com/lacework/lw-scanner-action/actions/workflows/test-action.yaml/badge.svg?branch=main)](https://github.com/lacework/lw-scanner-action/actions/workflows/test-action.yaml)
 
 Github Action for using the Lacework Inline image scanner in workflows
 

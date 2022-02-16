@@ -1,6 +1,6 @@
 name: "lw-scanner"
 description: "Scan container images for vulnerabilities with Lacework's Inline Scanner"
-author: "Tim Arenz"
+author: "Lacework"
 inputs:
   LW_ACCOUNT_NAME:
     description: "Your Lacework account name. For example, if your login URL is mycompany.lacework.net, the account name is mycompany."

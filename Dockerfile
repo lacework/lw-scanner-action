@@ -1,3 +1,3 @@
-FROM ghcr.io/timarenz/lw-scanner:v0.2.5
+FROM lacework/lacework-inline-scanner:latest
 COPY ./docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]

@@ -1,5 +1,9 @@
 name: test-action-failure-critical
-on: [push, workflow_dispatch]
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 8 * * *'
 
 jobs:
   test-action-failure-critical:
