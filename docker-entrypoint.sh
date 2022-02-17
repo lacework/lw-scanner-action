@@ -42,9 +42,9 @@ fi
 # Check if needed to check build and policy feature not used
 if [ ${INPUT_USE_POLICY} = "false" ] && [ ${INPUT_FAIL_BUILD} = "true" ]; then
   # Check if jq exists, try to install and fail if not succesful
-  if [ -f "/usr/bin/jq" ]; then
+  if [ ! -f "/usr/bin/jq" ]; then
       apk add --no-cache --quiet jq
-      if [ -f "/usr/bin/jq" ]; then
+      if [ ! -f "/usr/bin/jq" ]; then
       echo "jq not found. Not able to analyze scan results. Failing action as security can not be guaranteed. Exiting with code 2"
       echo "::set-output name=EXIT_CODE::2"
       exit 2
