@@ -25,7 +25,8 @@ jobs:
           IMAGE_NAME: ghcr.io/timarenz/vulnerable-container
           IMAGE_TAG: v0.0.1
           SCAN_LIBRARY_PACKAGES: false
-          FAIL_BUILD: false
+          FAIL_BUILD: true
+          SEVERITY_THRESHOLD: critical
 
       - name: Check if action failed for any other reason then vulnerabilities found.
         if: steps.lw-scanner.outputs.EXIT_CODE != '1'

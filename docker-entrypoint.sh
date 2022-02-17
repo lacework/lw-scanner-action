@@ -45,9 +45,9 @@ if [ ${INPUT_USE_POLICY} = "false" ] && [ ${INPUT_FAIL_BUILD} = "true" ]; then
   if [ ! -f "/usr/bin/jq" ]; then
       apk add --no-cache --quiet jq
       if [ ! -f "/usr/bin/jq" ]; then
-      echo "jq not found. Not able to analyze scan results. Failing action as security can not be guaranteed. Exiting with code 2"
-      echo "::set-output name=EXIT_CODE::2"
-      exit 2
+        echo "jq not found. Not able to analyze scan results. Failing action as security can not be guaranteed. Exiting with code 2"
+        echo "::set-output name=EXIT_CODE::2"
+        exit 2
       fi
   fi
 
@@ -103,5 +103,6 @@ if [ ${INPUT_USE_POLICY} = "false" ] && [ ${INPUT_FAIL_BUILD} = "true" ]; then
 		;;
   esac
 else
+    echo "::set-output name=EXIT_CODE::${LW_SCANNER_EXIT_CODE}"
     exit ${LW_SCANNER_EXIT_CODE}
 fi

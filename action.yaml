@@ -43,7 +43,7 @@ inputs:
     default: "false"
 outputs:
   EXIT_CODE:
-    description: "Contains exit code which should be 1 if vulnerabilites are found, any other error code implies that the scan failed."
+    description: "Contains exit code which should be 1 if vulnerabilites are found, any other error code implies that the scan failed. Only applicable if `USE_POLICY=false`"
 runs:
   using: "docker"
   image: "Dockerfile"
