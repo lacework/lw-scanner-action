@@ -3,7 +3,7 @@ on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: '30 8 * * *'
+    - cron: "30 8 * * *"
 
 jobs:
   test-action-failure-policy:
@@ -29,5 +29,5 @@ jobs:
           USE_POLICY: true
 
       - name: Check if vulnerabilites were found and step failed.
-        if: steps.lw-scanner.outcome == 'failure'
+        if: steps.lw-scanner.outputs.EXIT_CODE == '1'
         run: echo "Vulnerabilities found and step failed succesfully." && exit 0
