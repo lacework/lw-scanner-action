@@ -31,7 +31,7 @@ inputs:
     required: false
 runs:
   using: "docker"
-  image: "docker://timarenz/lw-scanner-action:refactor"
+  image: "docker://ghcr.io/lacework/lw-scanner-image:action-refactor"
   args:
     - ${{ inputs.LW_ACCOUNT_NAME }}
     - ${{ inputs.LW_ACCESS_TOKEN }}
