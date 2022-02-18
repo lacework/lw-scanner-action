@@ -1,4 +1,4 @@
-name: test-action
+name: test-action-report
 on:
   push:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     - cron: "30 8 * * *"
 
 jobs:
-  test-action:
+  test-action-report:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo

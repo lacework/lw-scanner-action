@@ -1,4 +1,4 @@
-name: test-action-blocked-scan-os-only
+name: test-action-blocked-disable-library
 on:
   push:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     - cron: "30 8 * * *"
 
 jobs:
-  test-action-blocked-scan-os-only:
+  test-action-blocked-disable-library:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
