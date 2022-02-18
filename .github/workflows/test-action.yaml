@@ -15,6 +15,14 @@ jobs:
       - name: Pull Docker image
         run: docker image pull ghcr.io/timarenz/vulnerable-container:v0.0.1
 
+      - name: Build lw-scanner action container image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          load: true
+          publish: false
+          tags: ${{ github.repository }}:latest
+
       - name: lw-scanner
         id: lw-scanner
         uses: ./
