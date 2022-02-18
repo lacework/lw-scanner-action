@@ -1,4 +1,4 @@
-name: test-action-failure-policy
+name: test-action-blocked-scan-os-only
 on:
   push:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     - cron: "30 8 * * *"
 
 jobs:
-  test-action-failure-policy:
+  test-action-blocked-scan-os-only:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -24,10 +24,8 @@ jobs:
           LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN_POLICY }}
           IMAGE_NAME: ghcr.io/timarenz/vulnerable-container
           IMAGE_TAG: v0.0.1
-          SAVE_BUILD_REPORT: true
-          BUILD_REPORT_FILE_NAME: report.html
-          USE_POLICY: true
+          SCAN_LIBRARY_PACKAGES: false
 
       - name: Check if vulnerabilites were found and step failed.
-        if: steps.lw-scanner.outputs.EXIT_CODE == '1'
+        if: steps.lw-scanner.outcome == 'failure'
         run: echo "Vulnerabilities found and step failed succesfully." && exit 0

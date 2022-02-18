@@ -3,7 +3,7 @@ on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: '30 8 * * *'
+    - cron: "30 8 * * *"
 
 jobs:
   test-action:
@@ -23,6 +23,3 @@ jobs:
           LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
           IMAGE_NAME: ghcr.io/timarenz/vulnerable-container
           IMAGE_TAG: v0.0.1
-          SAVE_BUILD_REPORT: true
-          BUILD_REPORT_FILE_NAME: report.html
-          FAIL_BUILD: false
