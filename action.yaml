@@ -31,7 +31,7 @@ inputs:
     required: false
 runs:
   using: "docker"
-  image: "docker://docker.io/lacework/lw-scanner-image:latest"
+  image: "docker://lacework/lw-scanner-action:latest"
   args:
     - ${{ inputs.LW_ACCOUNT_NAME }}
     - ${{ inputs.LW_ACCESS_TOKEN }}

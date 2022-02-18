@@ -20,7 +20,7 @@ jobs:
         with:
           context: .
           load: true
-          publish: false
+          push: false
           tags: ${{ github.repository }}:latest
 
       - name: lw-scanner
