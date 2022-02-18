@@ -5,26 +5,12 @@ on:
   schedule:
     - cron: "30 8 * * *"
 
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
-
 jobs:
   test-action:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: read
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-
-      - name: Log in to the Container registry
-        uses: docker/login-action@v1
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Pull Docker image
         run: docker image pull ghcr.io/timarenz/vulnerable-container:v0.0.1
