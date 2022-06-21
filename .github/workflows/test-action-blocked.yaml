@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Pull Docker image
-        run: docker image pull ghcr.io/timarenz/vulnerable-container:v0.0.1
+        run: docker image pull techallylw/vulnerable-container:v0.0.1
 
       - name: Build lw-scanner action container image
         uses: docker/build-push-action@v2
@@ -30,7 +30,7 @@ jobs:
         with:
           LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
           LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN_POLICY }}
-          IMAGE_NAME: ghcr.io/timarenz/vulnerable-container
+          IMAGE_NAME: techallylw/vulnerable-container
           IMAGE_TAG: v0.0.1
 
       - name: Check if vulnerabilites were found and step failed.
