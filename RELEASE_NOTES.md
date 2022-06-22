@@ -1,7 +1,7 @@
 # Release Notes
-Another day, another release. These are the release notes for the version `v0.7.1`.
+Another day, another release. These are the release notes for the version `v1.0.0`.
 
-## Bug Fixes
-* fix(jq): binary missing and logic corrections (#7) (Tim Arenz)([0c6d283](https://github.com/lacework/lw-scanner-action/commit/0c6d283089626713a4c86decae2793183fd84803))
+## Refactor
+* refactor(v1.0.0): Use native policies from the platform (#9) (Salim Afiune)([3fc0763](https://github.com/lacework/lw-scanner-action/commit/3fc076363453880f21ef59b0a7a2f83f124e0ab2))
 ## Other Changes
-* ci: version bump to v0.7.1-dev (Lacework)([a49f3c8](https://github.com/lacework/lw-scanner-action/commit/a49f3c85912e285410771cbbb5fcfdd4552009bf))
+* ci: version bump to v0.7.2-dev (Lacework)([32292e5](https://github.com/lacework/lw-scanner-action/commit/32292e503b37817e7e78a13ad1d66a5668c2446a))
