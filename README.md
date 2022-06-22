@@ -30,7 +30,7 @@ Options:
 | `IMAGE_TAG`                | Tag of the container image you want to scan, for example `12.18.2-alpine`                                                                        |                                        |
 | `SCAN_LIBRARY_PACKAGES`    | Also scan software packages                                                                                                                      | `true`                                 |
 | `SAVE_RESULTS_IN_LACEWORK` | Save results to your Lacework account                                                                                                            | `true`                                 |
-| `SAVE_BUILD_REPORT`        | Saves the evaluation report as a local HTML file.                                                                                                | false                                  |
+| `SAVE_BUILD_REPORT`        | Saves the evaluation report as a local HTML file.                                                                                                | `false`                                |
 | `BUILD_REPORT_FILE_NAME`   | Specify custom file name for the HTML evalutation report                                                                                         | `<OS_TYPE>-<IMAGE_DIGEST_SHA256>.html` |
 
 ## Example
