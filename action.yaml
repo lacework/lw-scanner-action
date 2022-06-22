@@ -29,21 +29,6 @@ inputs:
   BUILD_REPORT_FILE_NAME:
     description: "Specify custom file name for the HTML evalutation report, by default the name is OS_TYPE-IMAGE_DIGEST_SHA256.html."
     required: false
-  FAIL_BUILD:
-    description: "Fail the build of vulnerabilities are discovered according to the threshold. (Default: true)"
-    required: false
-    default: "true"
-  SEVERITY_THRESHOLD:
-    description: "Severity threshold that will fail the build: info, low, medium, high, critical, fixable. (Default: medium)"
-    required: false
-    default: "medium"
-  USE_POLICY:
-    description: "Use the Lacework policy managed feature (beta). If enabled this overwrites `FAIL_BUILD`and `SEVERITY_THRESHOLD`. (Default: false)"
-    required: false
-    default: "false"
-outputs:
-  EXIT_CODE:
-    description: "Contains exit code which should be 1 if vulnerabilites are found, any other error code implies that the scan failed. Only applicable if `USE_POLICY=false`"
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -56,9 +41,6 @@ runs:
     - ${{ inputs.SAVE_RESULTS_IN_LACEWORK }}
     - ${{ inputs.SAVE_BUILD_REPORT }}
     - ${{ inputs.BUILD_REPORT_FILE_NAME }}
-    - ${{ inputs.FAIL_BUILD }}
-    - ${{ inputs.SEVERITY_THRESHOLD }}
-    - ${{ inputs.USE_POLICY }}
 branding:
   icon: "alert-triangle"
   color: "blue"

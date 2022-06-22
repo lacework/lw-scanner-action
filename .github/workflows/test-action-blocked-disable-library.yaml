@@ -1,4 +1,4 @@
-name: test-action-scan-os-only
+name: test-action-blocked-disable-library
 on:
   push:
   workflow_dispatch:
@@ -6,14 +6,22 @@ on:
     - cron: "30 8 * * *"
 
 jobs:
-  test-action-scan-os-only:
+  test-action-blocked-disable-library:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
 
       - name: Pull Docker image
-        run: docker image pull ghcr.io/timarenz/vulnerable-container:v0.0.1
+        run: docker image pull techallylw/vulnerable-container:v0.0.1
+
+      - name: Build lw-scanner action container image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          load: true
+          push: false
+          tags: ${{ github.repository }}:latest
 
       - name: lw-scanner
         id: lw-scanner
@@ -21,17 +29,11 @@ jobs:
         continue-on-error: true
         with:
           LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
-          LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
-          IMAGE_NAME: ghcr.io/timarenz/vulnerable-container
+          LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN_POLICY }}
+          IMAGE_NAME: techallylw/vulnerable-container
           IMAGE_TAG: v0.0.1
           SCAN_LIBRARY_PACKAGES: false
-          FAIL_BUILD: true
-          SEVERITY_THRESHOLD: critical
-
-      - name: Check if action failed for any other reason then vulnerabilities found.
-        if: steps.lw-scanner.outputs.EXIT_CODE != '1'
-        run: echo "Action failed." && exit 1
 
       - name: Check if vulnerabilites were found and step failed.
-        if: steps.lw-scanner.outputs.EXIT_CODE == '1'
+        if: steps.lw-scanner.outcome == 'failure'
         run: echo "Vulnerabilities found and step failed succesfully." && exit 0
