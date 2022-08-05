@@ -11,7 +11,7 @@ Github Action for using the Lacework Inline image scanner in workflows
 To add the scanner to your workflow:
 
 ```yaml
-- uses: lacework/lw-scanner-action@v1.0.0
+- uses: lacework/lw-scanner-action@v1.0.1
   name: Scan container image for vulnerabitilies using Lacework
   with:
     LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }} 
@@ -32,6 +32,7 @@ Options:
 | `SAVE_RESULTS_IN_LACEWORK` | Save results to your Lacework account                                                                                                            | `true`                                 |
 | `SAVE_BUILD_REPORT`        | Saves the evaluation report as a local HTML file.                                                                                                | `false`                                |
 | `BUILD_REPORT_FILE_NAME`   | Specify custom file name for the HTML evalutation report                                                                                         | `<OS_TYPE>-<IMAGE_DIGEST_SHA256>.html` |
+| `LW_SCANNER_ENABLE_DEBUGGING` | Enables debug logging from scanner  | `false` |
 
 ## Example
 
@@ -39,7 +40,7 @@ Options:
 jobs:
     build:
         steps:
-            - uses: lacework/lw-scanner-action@v1.0.0
+            - uses: lacework/lw-scanner-action@v1.0.1
               name: Scan container images for vulnerabitilies using Lacework
               with:
                 LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }} 
