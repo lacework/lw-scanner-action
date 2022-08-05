@@ -2,6 +2,7 @@
 
 export LW_ACCOUNT_NAME=${INPUT_LW_ACCOUNT_NAME}
 export LW_ACCESS_TOKEN=${INPUT_LW_ACCESS_TOKEN}
+export LW_SCANNER_ENABLE_DEBUGGING=${INPUT_LW_SCANNER_ENABLE_DEBUGGING:-false}
 
 # Disable update prompt for lw-scanner if newer version is available unless explicitly set
 export LW_SCANNER_DISABLE_UPDATES=${LW_SCANNER_DISABLE_UPDATES:-true}

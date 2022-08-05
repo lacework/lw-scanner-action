@@ -29,6 +29,9 @@ inputs:
   BUILD_REPORT_FILE_NAME:
     description: "Specify custom file name for the HTML evalutation report, by default the name is OS_TYPE-IMAGE_DIGEST_SHA256.html."
     required: false
+  LW_SCANNER_ENABLE_DEBUGGING:
+    description: "Enable debug logging for scanner"
+    required: false
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -41,6 +44,7 @@ runs:
     - ${{ inputs.SAVE_RESULTS_IN_LACEWORK }}
     - ${{ inputs.SAVE_BUILD_REPORT }}
     - ${{ inputs.BUILD_REPORT_FILE_NAME }}
+    - ${{ inputs.LW_SCANNER_ENABLE_DEBUGGING }}
 branding:
   icon: "alert-triangle"
   color: "blue"
