@@ -11,7 +11,7 @@ Github Action for using the Lacework Inline image scanner in workflows
 To add the scanner to your workflow:
 
 ```yaml
-- uses: lacework/lw-scanner-action@v1.0.1
+- uses: lacework/lw-scanner-action@v1.1.0
   name: Scan container image for vulnerabitilies using Lacework
   with:
     LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }} 
