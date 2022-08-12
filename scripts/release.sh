@@ -256,7 +256,8 @@ find_latest_version() {
   local _versions
   local _latest_version
   _versions=$(git ls-remote --tags --quiet | grep $_pattern | tr '/' ' ' | tr 'v' ' ' | awk '{print $NF}')
-  _latest_version=$(echo "v$_versions" | tr '.' ' ' | sort -nr -k 1 -k 2 -k 3 | tr ' ' '.' | head -1)
+  _latest_version=$(echo "$_versions" | tr '.' ' ' | sort -nr -k 1 -k 2 -k 3 | tr ' ' '.' | head -1)
+  echo "v$_latest_version"
 }
 
 check_for_minor_version_bump() {
