@@ -2,7 +2,6 @@
 
 export LW_ACCOUNT_NAME=${INPUT_LW_ACCOUNT_NAME}
 export LW_ACCESS_TOKEN=${INPUT_LW_ACCESS_TOKEN}
-export LW_SCANNER_ENABLE_DEBUGGING=${INPUT_LW_SCANNER_ENABLE_DEBUGGING:-false}
 
 # Disable update prompt for lw-scanner if newer version is available unless explicitly set
 export LW_SCANNER_DISABLE_UPDATES=${LW_SCANNER_DISABLE_UPDATES:-true}
@@ -20,6 +19,9 @@ if [ ${INPUT_SAVE_BUILD_REPORT} = "true" ]; then
 fi
 if [ ! -z "${INPUT_BUILD_REPORT_FILE_NAME}" ]; then
     export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --html-file ${INPUT_BUILD_REPORT_FILE_NAME}"
+fi
+if [ ${INPUT_LW_SCANNER_ENABLE_DEBUGGING} = "true" ]; then
+    export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --debug"
 fi
 
 # Remove old scanner evaluation, if cached somehow
