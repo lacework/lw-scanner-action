@@ -10,13 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Pull Docker image
-        run: docker image pull techallylw/vulnerable-container:v0.0.1
+      - name: Build vulnerable container image
+        uses: docker/build-push-action@v2
+        with:
+          context: ./tests
+          load: true
+          push: false
+          tags: vulnerable-container:v0.0.1
 
       - name: Build lw-scanner action container image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v2
         with:
           context: .
           load: true
@@ -29,5 +34,5 @@ jobs:
         with:
           LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
           LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
-          IMAGE_NAME: techallylw/vulnerable-container
+          IMAGE_NAME: vulnerable-container
           IMAGE_TAG: v0.0.1

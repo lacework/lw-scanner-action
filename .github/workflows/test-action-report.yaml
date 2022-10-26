@@ -1,4 +1,4 @@
-name: test-action-blocked
+name: test-action-report
 on:
   push:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     - cron: "30 8 * * *"
 
 jobs:
-  test-action-blocked:
+  test-action-report:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -26,13 +26,10 @@ jobs:
       - name: lw-scanner
         id: lw-scanner
         uses: ./
-        continue-on-error: true
         with:
           LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
-          LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN_POLICY }}
+          LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
           IMAGE_NAME: techallylw/vulnerable-container
           IMAGE_TAG: v0.0.1
-
-      - name: Check if vulnerabilites were found and step failed.
-        if: steps.lw-scanner.outcome == 'failure'
-        run: echo "Vulnerabilities found and step failed succesfully." && exit 0
+          SAVE_BUILD_REPORT: true
+          BUILD_REPORT_FILE_NAME: report.html
