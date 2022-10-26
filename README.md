@@ -32,7 +32,10 @@ Options:
 | `SAVE_RESULTS_IN_LACEWORK` | Save results to your Lacework account                                                                                                            | `true`                                 |
 | `SAVE_BUILD_REPORT`        | Saves the evaluation report as a local HTML file.                                                                                                | `false`                                |
 | `BUILD_REPORT_FILE_NAME`   | Specify custom file name for the HTML evalutation report                                                                                         | `<OS_TYPE>-<IMAGE_DIGEST_SHA256>.html` |
-| `LW_SCANNER_ENABLE_DEBUGGING` | Enables debug logging from scanner  | `false` |
+| `DEBUGGING`                | Enables debug logging from scanner                                                                                                               | `false`                                |
+| `PRETTY_OUTPUT`            | Renders table borders and adds color to Severity column in the output of the evaluation results                                                  | `true`                                 |
+| `SIMPLE_OUTPUT`            | Displays evaluation results without Introduced in `Layer` and `File Path` columns.                                                               | `true`                                 |
+| `COLOR_OUTPUT`             | Colors are rendered in evaluation results when the `PRETTY_OUTPUT` option is enabled.                                                            | `true`                                 |
 
 ## Example
 
@@ -58,9 +61,9 @@ For guidelines on how to contribute to the project see the [CONTRIBUTING.md](CON
 
 ## License and Copyright
 
-Copyright 2020, Lacework Inc.
+Copyright 2022, Lacework Inc.
 
-```
+```text
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -72,3 +75,4 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+```

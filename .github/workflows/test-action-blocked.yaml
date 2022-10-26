@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Pull Docker image
         run: docker image pull techallylw/vulnerable-container:v0.0.1
 
       - name: Build lw-scanner action container image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: .
           load: true
@@ -33,6 +33,6 @@ jobs:
           IMAGE_NAME: techallylw/vulnerable-container
           IMAGE_TAG: v0.0.1
 
-      - name: Check if vulnerabilites were found and step failed.
-        if: steps.lw-scanner.outcome == 'failure'
-        run: echo "Vulnerabilities found and step failed succesfully." && exit 0
+      - name: Check if step did fail as expected based on policy.
+        if: steps.lw-scanner.outcome != 'failure'
+        run: exit 1
