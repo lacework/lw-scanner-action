@@ -20,7 +20,7 @@ fi
 if [ ! -z "${INPUT_BUILD_REPORT_FILE_NAME}" ]; then
     export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --html-file ${INPUT_BUILD_REPORT_FILE_NAME}"
 fi
-if [ ${INPUT_LW_SCANNER_ENABLE_DEBUGGING} = "true" ]; then
+if [ ${INPUT_DEBUGGING} = "true" ]; then
     export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --debug"
 fi
 
