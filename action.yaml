@@ -33,6 +33,18 @@ inputs:
     description: "Enable debug logging for scanner"
     required: false
     default: "false"
+  PRETTY_OUTPUT:
+    description: "Renders table borders and adds color to Severity column in the output of the evaluation results. (Default: true)"
+    required: false
+    default: "true"
+  SIMPLE_OUTPUT:
+    description: "Displays evaluation results without Introduced in `Layer` and `File Path` columns. (Default: true)"
+    required: false
+    default: "true"
+  COLOR_OUTPUT:
+    description: "Colors are rendered in evaluation results when the `PRETTY_OUTPUT` option is enabled. (Default: true)"
+    required: false
+    default: "true"
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -46,6 +58,9 @@ runs:
     - ${{ inputs.SAVE_BUILD_REPORT }}
     - ${{ inputs.BUILD_REPORT_FILE_NAME }}
     - ${{ inputs.DEBUGGING }}
+    - ${{ inputs.PRETTY_OUTPUT }}
+    - ${{ inputs.SIMPLE_OUTPUT }}
+    - ${{ inputs.COLOR_OUTPUT }}
 branding:
   icon: "alert-triangle"
   color: "blue"

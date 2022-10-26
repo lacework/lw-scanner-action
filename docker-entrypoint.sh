@@ -23,6 +23,15 @@ fi
 if [ ${INPUT_DEBUGGING} = "true" ]; then
     export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --debug"
 fi
+if [ ${INPUT_PRETTY_OUTPUT} = "true" ]; then
+    export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --pretty"
+fi
+if [ ${INPUT_SIMPLE_OUTPUT} = "true" ]; then
+    export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --simple"
+fi
+if [ ${INPUT_COLOR_OUTPUT} = "false" ]; then
+    export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --no-color"
+fi
 
 # Remove old scanner evaluation, if cached somehow
 rm ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json &>/dev/null || true

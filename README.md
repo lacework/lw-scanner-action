@@ -32,7 +32,10 @@ Options:
 | `SAVE_RESULTS_IN_LACEWORK` | Save results to your Lacework account                                                                                                            | `true`                                 |
 | `SAVE_BUILD_REPORT`        | Saves the evaluation report as a local HTML file.                                                                                                | `false`                                |
 | `BUILD_REPORT_FILE_NAME`   | Specify custom file name for the HTML evalutation report                                                                                         | `<OS_TYPE>-<IMAGE_DIGEST_SHA256>.html` |
-| `DEBUGGING`                 | Enables debug logging from scanner                                                                                                              | `false`                                |
+| `DEBUGGING`                | Enables debug logging from scanner                                                                                                               | `false`                                |
+| `PRETTY_OUTPUT`            | Renders table borders and adds color to Severity column in the output of the evaluation results                                                  | `true`                                 |
+| `SIMPLE_OUTPUT`            | Displays evaluation results without Introduced in `Layer` and `File Path` columns.                                                               | `true`                                 |
+| `COLOR_OUTPUT`             | Colors are rendered in evaluation results when the `PRETTY_OUTPUT` option is enabled.                                                            | `true`                                 |
 
 ## Example
 
