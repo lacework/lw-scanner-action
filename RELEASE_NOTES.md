@@ -1,10 +1,12 @@
 # Release Notes
-Another day, another release. These are the release notes for the version `v1.1.1`.
+Another day, another release. These are the release notes for the version `v1.2.0`.
 
+## Features
+* feat: add new output options and use as default (Tim Arenz)([9edcf8f](https://github.com/lacework/lw-scanner-action/commit/9edcf8f49c0706dbd98698b063c9708d924dcc13))
 ## Bug Fixes
-* fix: release script (#24) (Salim Afiune)([e0adb9c](https://github.com/lacework/lw-scanner-action/commit/e0adb9c68866d6ee48789bea1a11f963b9749a8d))
-* fix: change debug to argument instead of variable (#20) (Andre Elizondo)([3393a74](https://github.com/lacework/lw-scanner-action/commit/3393a74db7bf16a93f604dbe6b4253e2e68eac4d))
+* fix: set debug default value and align with comon naming schema (Tim Arenz)([30ee752](https://github.com/lacework/lw-scanner-action/commit/30ee752b796a59a83ba9160110aa9c0fdd22a600))
 ## Other Changes
-* ci: fix release script to fint latest version (#22) (Salim Afiune)([4027f36](https://github.com/lacework/lw-scanner-action/commit/4027f36074bb294f0b61d4ccf674feb6bf34fdb8))
-* ci: fix bug that avoids automatic version bump (Salim Afiune Maya)([9eb8578](https://github.com/lacework/lw-scanner-action/commit/9eb85783118bea3bd4b35e3a7858d27e71685c0c))
-* ci: version bump to v1.1.1 (Salim Afiune Maya)([0657580](https://github.com/lacework/lw-scanner-action/commit/0657580f91858b945652b6c1752f77d16746abe9))
+* chore: update scanner version to 0.10.1 (Tim Arenz)([5b10068](https://github.com/lacework/lw-scanner-action/commit/5b10068d63f7bc5b1f6b31921e4bb596fed5e716))
+* ci: use v3 actions (Tim Arenz)([f8f0fdb](https://github.com/lacework/lw-scanner-action/commit/f8f0fdb19fcd7af84b407948cb6a5cc99739cad0))
+* ci: clean up test-actions and use prebuilt image in all jobs (Tim Arenz)([b6a58a0](https://github.com/lacework/lw-scanner-action/commit/b6a58a07f0dc317708a90c646d4cdc5d7699791b))
+* ci: version bump to v1.1.2-dev (Lacework)([9427c17](https://github.com/lacework/lw-scanner-action/commit/9427c17df21995fc2768c3de8b9826bb959fe17a))
