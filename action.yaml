@@ -45,6 +45,9 @@ inputs:
     description: "Colors are rendered in evaluation results when the `PRETTY_OUTPUT` option is enabled. (Default: true)"
     required: false
     default: "true"
+  ADDITIONAL_PARAMETERS:
+    description: "Additional custom parameters for the lacework scanner cli"
+    required: false
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -61,6 +64,7 @@ runs:
     - ${{ inputs.PRETTY_OUTPUT }}
     - ${{ inputs.SIMPLE_OUTPUT }}
     - ${{ inputs.COLOR_OUTPUT }}
+    - ${{ inputs.ADDITIONAL_PARAMETERS }}
 branding:
   icon: "alert-triangle"
   color: "blue"

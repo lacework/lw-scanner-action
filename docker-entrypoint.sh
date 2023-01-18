@@ -32,6 +32,9 @@ fi
 if [ ${INPUT_COLOR_OUTPUT} = "false" ]; then
     export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --no-color"
 fi
+if [ ! -z "${INPUT_ADDITIONAL_PARAMETERS}" ]; then
+    export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} ${INPUT_ADDITIONAL_PARAMETERS}"
+fi
 
 # Remove old scanner evaluation, if cached somehow
 rm ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json &>/dev/null || true
