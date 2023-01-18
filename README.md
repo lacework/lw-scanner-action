@@ -29,14 +29,14 @@ Options:
 | `IMAGE_NAME`               | Name of the container to be scanned, for example `node`                                                                                             |                                        |
 | `IMAGE_TAG`                | Tag of the container image you want to scan, for example `12.18.2-alpine`                                                                           |                                        |
 | `SCAN_LIBRARY_PACKAGES`    | Also scan software packages                                                                                                                         | `true`                                 |
-| `SAVE_RESULTS_IN_LACEWORK` | Save results to your Lacework account                                                                                                               | `true`                                 |
+| `SAVE_RESULTS_IN_LACEWORK` | Save results to your Lacework account                                                                                                               | `false`                                 |
 | `SAVE_BUILD_REPORT`        | Saves the evaluation report as a local HTML file.                                                                                                   | `false`                                |
 | `BUILD_REPORT_FILE_NAME`   | Specify custom file name for the HTML evalutation report                                                                                            | `<OS_TYPE>-<IMAGE_DIGEST_SHA256>.html` |
 | `DEBUGGING`                | Enables debug logging from scanner                                                                                                                  | `false`                                |
 | `PRETTY_OUTPUT`            | Renders table borders and adds color to Severity column in the output of the evaluation results                                                     | `true`                                 |
 | `SIMPLE_OUTPUT`            | Displays evaluation results without Introduced in `Layer` and `File Path` columns.                                                                  | `true`                                 |
 | `COLOR_OUTPUT`             | Colors are rendered in evaluation results when the `PRETTY_OUTPUT` option is enabled.                                                               | `true`                                 |
-| `ADDITINONAL_PARAMETERS`   | Additional custom parameters for the lacework scanner cli. (see [docs](https://docs.lacework.com/onboarding/integrate-inline-scanner#global-flags)) |                                        |
+| `ADDITIONAL_PARAMETERS`   | Additional parameters/flags. Only [global](https://docs.lacework.com/onboarding/integrate-inline-scanner#global-flags) and [`image evalute`](https://docs.lacework.com/onboarding/integrate-inline-scanner#flags-for-image-evaluate) flags are supported. |                                        |
 
 
 ## Example
