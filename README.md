@@ -11,7 +11,7 @@ Github Action for using the Lacework Inline image scanner in workflows
 To add the scanner to your workflow:
 
 ```yaml
-- uses: lacework/lw-scanner-action@v1.2.0
+- uses: lacework/lw-scanner-action@v1.3.0
   name: Scan container image for vulnerabilities using Lacework
   with:
     LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
@@ -38,6 +38,17 @@ Options:
 | `COLOR_OUTPUT`             | Colors are rendered in evaluation results when the `PRETTY_OUTPUT` option is enabled.                                                               | `true`                                 |
 | `ADDITIONAL_PARAMETERS`   | Additional parameters/flags. Only [global](https://docs.lacework.com/onboarding/integrate-inline-scanner#global-flags) and [`image evalute`](https://docs.lacework.com/onboarding/integrate-inline-scanner#flags-for-image-evaluate) flags are supported. |                                        |
 
+# Environment variables
+The Lacework Integrate Inline Scanner uses environment variables for additional configuration parameters. By default this action uses the following environment variables and default values.
+
+| Environment variable name | Default value |
+|---------------------------|---------------|
+| LW_ACCOUNT_NAME | GitHub actions input variable `LW_ACCOUNT_NAME` |
+| LW_ACCESS_TOKEN | GitHub actions input variable `LW_ACCESS_TOKEN` |
+| LW_SCANNER_DISABLE_UPDATES | `true` |
+
+Additional enviroment variables can be set within the GitHub Action step itself (see [docs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsenv)).
+This way, for example, you can enable offline scanning of Java images, see [Scan Java Images Offline](https://docs.lacework.com/onboarding/integrate-inline-scanner#scan-java-images-offline).
 
 ## Example
 
@@ -55,6 +66,8 @@ jobs:
           SAVE_RESULTS_IN_LACEWORK: true
           SAVE_BUILD_REPORT: true
           BUILD_REPORT_FILE_NAME: myreport.html
+        env:
+          JAVA_OFFLINE_MODE: true
 ```
 
 ## Contributing
