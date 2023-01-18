@@ -38,6 +38,7 @@ Options:
 | `COLOR_OUTPUT`             | Colors are rendered in evaluation results when the `PRETTY_OUTPUT` option is enabled.                                                               | `true`                                 |
 | `ADDITINONAL_PARAMETERS`   | Additional custom parameters for the lacework scanner cli. (see [docs](https://docs.lacework.com/onboarding/integrate-inline-scanner#global-flags)) |                                        |
 
+
 ## Example
 
 ```yaml
