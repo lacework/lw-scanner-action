@@ -46,7 +46,7 @@ inputs:
     required: false
     default: "true"
   ADDITIONAL_PARAMETERS:
-    description: "Additional custom parameters for the lacework scanner cli"
+    description: "Additional parameters/flags. Only global and `image evalute` flags are supported."
     required: false
 runs:
   using: "docker"
