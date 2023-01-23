@@ -31,7 +31,7 @@ fi
 
 # Create a branch and commit changes
 git checkout -B version-bump
-git commit -sS -am "bump: lw-scanner to version ${_scanner_version}"
+git commit -sS -am "chore(deps): lw-scanner to version ${_scanner_version}"
 git push origin version-bump -f
 
 # Open Pull Request
@@ -41,7 +41,7 @@ cat <<EOF > $_body
 {
   "base": "main",
   "head": "version-bump",
-  "title": "bump: lw-scanner to version ${_scanner_version}",
+  "title": "chore(deps): lw-scanner to version ${_scanner_version}",
   "body": "Automated update, merge if pipeline is green."
 }
 EOF
