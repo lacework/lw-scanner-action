@@ -13,13 +13,15 @@ readonly git_user="Lacework Inc."
 readonly git_email="tech-ally@lacework.net"
 
 if [[ "${1:-}" == "" ]]; then
-  echo "Unable to update version. Please provide the new version to update."
+  echo "ERROR: Unable to update version. Please provide the new version to update."
 fi
 
 _scanner_version=$1
 
 # Update Dockerfile
-sed -i '' 's/:.*$/:'${_scanner_version}'/' Dockerfile
+echo "--> Updating lw-scanner version to ${_scanner_version}"
+sed -i 's/:.*$/:'${_scanner_version}'/' Dockerfile
+exit 0
 
 # Configure Git if running in CI
 if [ "${CI:-}" != "" ]; then
