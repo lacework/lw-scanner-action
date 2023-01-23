@@ -21,7 +21,6 @@ _scanner_version=$1
 # Update Dockerfile
 echo "--> Updating lw-scanner version to ${_scanner_version}"
 sed -i 's/:.*$/:'${_scanner_version}'/' Dockerfile
-exit 0
 
 # Configure Git if running in CI
 if [ "${CI:-}" != "" ]; then
