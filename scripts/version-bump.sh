@@ -48,6 +48,6 @@ EOF
 curl -XPOST -H "Authorization: token $GITHUB_TOKEN" --data  "@$_body" \
         https://api.github.com/repos/${org_name}/${project_name}/pulls > $_pr
 _pr_url=$(jq .html_url $_pr)
-log ""
-log "It is time to for review!"
-log "    $_pr_url"
+echo ""
+echo "--> It is time to for review!"
+echo "    $_pr_url"
