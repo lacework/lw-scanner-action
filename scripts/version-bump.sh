@@ -14,6 +14,8 @@ readonly git_email="tech-ally@lacework.net"
 
 if [[ "${1:-}" == "" ]]; then
   echo "ERROR: Unable to update version. Please provide the new version to update."
+elif [[ "${1:-}" == "undefined" ]]; then
+  echo "ERROR: SCANNER_VERSION variable not passed to codefresh job. Please check the pipeline."
 fi
 
 _scanner_version=$1
