@@ -29,7 +29,7 @@ fi
 if [ ${INPUT_SIMPLE_OUTPUT} = "true" ]; then
     export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --simple"
 fi
-if [ ${INPUT_COLOR_OUTPUT} = "false" ] || [ "${INPUT_RESULTS_IN_GITHUB_SUMMARY}" = "true" ]; then
+if [ ${INPUT_COLOR_OUTPUT} = "false" ]; then
     export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --no-color"
 fi
 if [ ! -z "${INPUT_ADDITIONAL_PARAMETERS}" ]; then
@@ -40,16 +40,5 @@ fi
 rm ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json &>/dev/null || true
 
 # Run scanner
-/opt/lacework/lw-scanner image evaluate ${INPUT_IMAGE_NAME} ${INPUT_IMAGE_TAG} \
-  --build-plan ${GITHUB_REPOSITORY} \
-  --build-id ${GITHUB_RUN_ID} \
-  --data-directory ${GITHUB_WORKSPACE} \
-  --policy \
-  --fail-on-violation-exit-code 1 ${SCANNER_PARAMETERS} | tee results.stdout
-
-if [ "${INPUT_RESULTS_IN_GITHUB_SUMMARY}" = "true" ]; then
-    echo "### Security Scan" >> $GITHUB_STEP_SUMMARY
-    echo "<pre>" >> $GITHUB_STEP_SUMMARY
-    cat results.stdout >> $GITHUB_STEP_SUMMARY
-    echo "</pre>" >> $GITHUB_STEP_SUMMARY
-fi
+/opt/lacework/lw-scanner image evaluate ${INPUT_IMAGE_NAME} ${INPUT_IMAGE_TAG} --build-plan ${GITHUB_REPOSITORY} \
+  --build-id ${GITHUB_RUN_ID} --data-directory ${GITHUB_WORKSPACE}  --policy --fail-on-violation-exit-code 1 ${SCANNER_PARAMETERS}
