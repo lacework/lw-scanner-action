@@ -45,7 +45,9 @@ rm ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evalua
   --build-id ${GITHUB_RUN_ID} \
   --data-directory ${GITHUB_WORKSPACE} \
   --policy \
-  --fail-on-violation-exit-code 1 ${SCANNER_PARAMETERS} | tee results.stdout
+  --fail-on-violation-exit-code 1 ${SCANNER_PARAMETERS} 1> results.stdout
+
+export EXIT_CODE=$?
 
 if [ "${INPUT_RESULTS_IN_GITHUB_SUMMARY}" = "true" ]; then
     echo "### Security Scan" >> $GITHUB_STEP_SUMMARY
@@ -53,3 +55,5 @@ if [ "${INPUT_RESULTS_IN_GITHUB_SUMMARY}" = "true" ]; then
     cat results.stdout >> $GITHUB_STEP_SUMMARY
     echo "</pre>" >> $GITHUB_STEP_SUMMARY
 fi
+
+exit $EXIT_CODE

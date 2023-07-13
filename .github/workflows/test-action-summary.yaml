@@ -21,7 +21,6 @@ jobs:
           tags: ${{ github.repository }}:latest
 
       - name: lw-scanner
-        id: lw-scanner
         uses: ./
         with:
           LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
