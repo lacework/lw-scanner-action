@@ -1,6 +1,7 @@
 name: test-action-blocked
 on:
   push:
+  pull_request:
   workflow_dispatch:
   schedule:
     - cron: "30 8 * * *"
