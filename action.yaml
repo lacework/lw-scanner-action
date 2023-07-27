@@ -48,6 +48,10 @@ inputs:
   ADDITIONAL_PARAMETERS:
     description: "Additional parameters/flags. Only global and `image evalute` flags are supported."
     required: false
+  RESULTS_IN_GITHUB_SUMMARY:
+    description: "Display results in github summary. (Default: false)"
+    required: false
+    default: "false"
 runs:
   using: "docker"
   image: "Dockerfile"
