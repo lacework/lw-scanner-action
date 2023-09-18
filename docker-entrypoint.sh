@@ -53,7 +53,7 @@ if [ "${INPUT_RESULTS_IN_GITHUB_SUMMARY}" = "true" ]; then
     cat results.stdout >> $GITHUB_STEP_SUMMARY
     echo "</pre>" >> $GITHUB_STEP_SUMMARY
     exit ${SCANNER_EXIT_CODE}
-elif
+else
     # Run scanner in default mode with output to console
     /opt/lacework/lw-scanner image evaluate ${INPUT_IMAGE_NAME} ${INPUT_IMAGE_TAG} \
     --build-plan ${GITHUB_REPOSITORY} \
@@ -62,5 +62,3 @@ elif
     --policy \
     --fail-on-violation-exit-code 1 ${SCANNER_PARAMETERS}
 fi
-
-
