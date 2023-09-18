@@ -29,7 +29,7 @@ fi
 if [ ${INPUT_SIMPLE_OUTPUT} = "true" ]; then
     export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --simple"
 fi
-if [ ${INPUT_COLOR_OUTPUT} = "false" ]; then
+if [ ${INPUT_COLOR_OUTPUT} = "false" ] || [ "${INPUT_RESULTS_IN_GITHUB_SUMMARY}" = "true" ]; then
     export SCANNER_PARAMETERS="${SCANNER_PARAMETERS} --no-color"
 fi
 if [ ! -z "${INPUT_ADDITIONAL_PARAMETERS}" ]; then
