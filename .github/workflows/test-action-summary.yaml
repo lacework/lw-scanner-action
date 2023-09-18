@@ -1,4 +1,4 @@
-name: test-action-blocked
+name: test-action-summary
 on:
   push:
   pull_request:
