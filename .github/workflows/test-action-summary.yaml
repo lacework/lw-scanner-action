@@ -1,0 +1,32 @@
+name: test-action-summary
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 8 * * *"
+
+jobs:
+  test-action-summary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Pull Docker image
+        run: docker image pull techallylw/vulnerable-container:v0.0.1
+
+      - name: lw-scanner with summury
+        id: lw-scanner-with-summary
+        continue-on-error: true
+        uses: ./
+        with:
+          LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
+          LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN_POLICY }}
+          IMAGE_NAME: techallylw/vulnerable-container
+          IMAGE_TAG: v0.0.1
+          RESULTS_IN_GITHUB_SUMMARY: "true"
+
+      - name: Check if step with summary did fail as expected based on policy.
+        if: steps.lw-scanner-with-summary.outcome != 'failure'
+        run: exit 1
