@@ -46,7 +46,7 @@ if [ "${INPUT_RESULTS_IN_GITHUB_SUMMARY}" = "true" ]; then
     --build-id ${GITHUB_RUN_ID} \
     --data-directory ${GITHUB_WORKSPACE} \
     --policy \
-    --fail-on-violation-exit-code 1 ${SCANNER_PARAMETERS}
+    --fail-on-violation-exit-code 1 ${SCANNER_PARAMETERS} 1> results.stdout
     export SCANNER_EXIT_CODE=$?
     echo "### Security Scan" >> $GITHUB_STEP_SUMMARY
     echo "<pre>" >> $GITHUB_STEP_SUMMARY
