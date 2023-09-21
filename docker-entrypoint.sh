@@ -1,4 +1,6 @@
 #!/bin/sh
+set -o pipefail
+
 # Set Lacework credentials as inline scanner environment variable
 export LW_ACCOUNT_NAME=${INPUT_LW_ACCOUNT_NAME}
 export LW_ACCESS_TOKEN=${INPUT_LW_ACCESS_TOKEN}
@@ -44,7 +46,7 @@ rm ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evalua
     --build-id ${GITHUB_RUN_ID} \
     --data-directory ${GITHUB_WORKSPACE} \
     --policy \
-    --fail-on-violation-exit-code 1 ${SCANNER_PARAMETERS} 1> | tee results.stdout
+    --fail-on-violation-exit-code 1 ${SCANNER_PARAMETERS} | tee results.stdout
 
 export SCANNER_EXIT_CODE=$?
 
