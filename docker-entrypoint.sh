@@ -39,26 +39,19 @@ fi
 # Remove old scanner evaluation, if cached somehow
 rm ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json &>/dev/null || true
 
-if [ "${INPUT_RESULTS_IN_GITHUB_SUMMARY}" = "true" ]; then
-    # Run scanner and store resulst as github job summary and no output to console
-    /opt/lacework/lw-scanner image evaluate ${INPUT_IMAGE_NAME} ${INPUT_IMAGE_TAG} \
+/opt/lacework/lw-scanner image evaluate ${INPUT_IMAGE_NAME} ${INPUT_IMAGE_TAG} \
     --build-plan ${GITHUB_REPOSITORY} \
     --build-id ${GITHUB_RUN_ID} \
     --data-directory ${GITHUB_WORKSPACE} \
     --policy \
-    --fail-on-violation-exit-code 1 ${SCANNER_PARAMETERS} 1> results.stdout
-    export SCANNER_EXIT_CODE=$?
+    --fail-on-violation-exit-code 1 ${SCANNER_PARAMETERS} 1> tee results.stdout
+export SCANNER_EXIT_CODE=$?
+
+if [ "${INPUT_RESULTS_IN_GITHUB_SUMMARY}" = "true" ]; then
     echo "### Security Scan" >> $GITHUB_STEP_SUMMARY
     echo "<pre>" >> $GITHUB_STEP_SUMMARY
     cat results.stdout >> $GITHUB_STEP_SUMMARY
     echo "</pre>" >> $GITHUB_STEP_SUMMARY
-    exit ${SCANNER_EXIT_CODE}
-else
-    # Run scanner in default mode with output to console
-    /opt/lacework/lw-scanner image evaluate ${INPUT_IMAGE_NAME} ${INPUT_IMAGE_TAG} \
-    --build-plan ${GITHUB_REPOSITORY} \
-    --build-id ${GITHUB_RUN_ID} \
-    --data-directory ${GITHUB_WORKSPACE} \
-    --policy \
-    --fail-on-violation-exit-code 1 ${SCANNER_PARAMETERS}
 fi
+
+exit ${SCANNER_EXIT_CODE}
