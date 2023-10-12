@@ -62,7 +62,7 @@ jobs:
   build:
     steps:
       - uses: lacework/lw-scanner-action@v1.2.0
-        name: Scan container images for vulnerabitilies using Lacework
+        name: Scan container images for vulnerabilities using Lacework
         with:
           LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
           LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
