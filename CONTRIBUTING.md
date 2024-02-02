@@ -31,7 +31,7 @@ open a new [issue](https://github.com/lacework/lw-scanner-action/issues/new)
 
 ### Pull Requests
 
-When submitting a pull request follow the [commit message standard](DEVELOPER_GUIDELINES.md#commit-message-standard).
+When submitting a pull request follow the [commit message standard](DEVELOPER_GUIDELINES.MD#commit-message-standard).
 Reduce the likelihood of pushing breaking changes by running the lw-scanner-action unit and integration tests, 
 see [development documentation](https://github.com/lacework/lw-scanner-action/tree/main/cli#development).
 
