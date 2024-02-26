@@ -17,7 +17,7 @@ jobs:
         run: docker image pull techallylw/vulnerable-container:v0.0.1
 
       - name: Build lw-scanner action container image
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           context: .
           load: true
