@@ -1,7 +1,6 @@
 name: Verify Release
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - release
