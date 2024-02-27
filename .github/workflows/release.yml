@@ -1,0 +1,73 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Slack on Release
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "attachments": [
+                {
+                  "color": "#E92020",
+                  "blocks": [
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "Releasing the lw-scanner Github Action"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_GROWTH_ENG_ALERTS }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Create Release
+        env:
+          GPG_SECRET_KEY: ${{ secrets.GPG_SECRET_KEY }}
+          GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        run: |
+          echo "$GPG_SECRET_KEY" | base64 --decode | gpg --import --no-tty --batch --yes
+          scripts/release.sh publish
+
+      - name: Notify Slack on Failure
+        uses: slackapi/slack-github-action@v1.25.0
+        if: failure()
+        with:
+          payload: |
+            {
+              "attachments": [
+                {
+                  "color": "#E92020",
+                  "blocks": [
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "@oncall-growth-eng! There has been a failure that needs your attention. :rotating_light:\n*GitHub Workflow Failure*\nlw-scanner-action/release\n*Workflow Run*\n https://github.com/lacework/go-sdk/actions/runs/${{ github.run_id }}"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_GROWTH_ENG_ALERTS }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
