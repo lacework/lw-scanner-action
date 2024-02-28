@@ -42,7 +42,7 @@ jobs:
                       "type": "section",
                       "text": {
                         "type": "mrkdwn",
-                        "text": "@oncall-growth-eng! There has been a failure that needs your attention. :rotating_light:\n*GitHub Workflow Failure*\nlw-scanner-action/release\n*Workflow Run*\n https://github.com/lacework/go-sdk/actions/runs/${{ github.run_id }}"
+                        "text": "@oncall-growth-eng! There has been a failure that needs your attention. :rotating_light:\n*GitHub Workflow Failure*\nlw-scanner-action/release\n*Workflow Run*\n https://github.com/lacework/lw-scanner-action/actions/runs/${{ github.run_id }}"
                       }
                     }
                   ]
