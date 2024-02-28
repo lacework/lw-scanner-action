@@ -1,13 +1,12 @@
 # Release Notes
-Another day, another release. These are the release notes for the version `v1.4.0`.
+Another day, another release. These are the release notes for the version `v1.4.1`.
 
-## Features
-* feat: add github summary integration (#57) (Jean-Yves CAMIER)([2e9e3ce](https://github.com/lacework/lw-scanner-action/commit/2e9e3cef38f74485f3700167824d0cb9ced4e12b))
-* feat: add github summury integration (#52) (Jean-Yves CAMIER)([065f92e](https://github.com/lacework/lw-scanner-action/commit/065f92eb94c6f58dd9a2397f3e9585d4da123210))
-## Bug Fixes
-* fix: output for non job-summary runs (#60) (Tim Arenz)([439c2c5](https://github.com/lacework/lw-scanner-action/commit/439c2c55020f12a6fe43a7ba1fb78c798da39f66))
+## Documentation Updates
+* docs(CONTRIBUTING.md): Fix link (#63) (Mateusz Wroński)([2d20deb](https://github.com/lacework/lw-scanner-action/commit/2d20deb947955add3ee4e1ce34157dde3873067d))
+* docs(readme): fix typo (#64) (Mateusz Wroński)([24a046e](https://github.com/lacework/lw-scanner-action/commit/24a046ed6e50ce18ba1e0452fd2c0e40cbd83171))
 ## Other Changes
-* chore(deps): lw-scanner to version 0.22.0 (#58) (lacework-releng)([b9e56e6](https://github.com/lacework/lw-scanner-action/commit/b9e56e6aa9a85da60ad046a1bcfd0cafcdffbe4a))
-* chore(deps): lw-scanner to version 0.22.0 (#50) (lacework-releng)([97373a6](https://github.com/lacework/lw-scanner-action/commit/97373a6ea94ab890adae000f1a8d59d2bb081dff))
-* ci: run tests on pull requests (#55) (Tim Arenz)([84a6732](https://github.com/lacework/lw-scanner-action/commit/84a6732502573b24afce5ed6fb0cbb2a7f8f4a30))
-* ci: version bump to v1.3.3-dev (Lacework)([55d9ca8](https://github.com/lacework/lw-scanner-action/commit/55d9ca8274566417ae3bc2f34e880bf8cc61f34e))
+* chore(tests): Use newer docker actions as old version use deprecated node version. (#67) (Tim Arenz)([04dc248](https://github.com/lacework/lw-scanner-action/commit/04dc2487967670ed26f5a2bd835d0ef0385e85db))
+* chore(deps): lw-scanner to version 0.23.2 (#65) (lacework-releng)([a4dae24](https://github.com/lacework/lw-scanner-action/commit/a4dae249a84654d2384f9a7f962d02326cac17db))
+* ci: fix workflow url in slack message (#69) (Pengyuan Zhao)([cf13c01](https://github.com/lacework/lw-scanner-action/commit/cf13c01ffebabcb40fd5ca7b1f465fefc82f9faf))
+* ci: migrate Codefresh pipelines to Github Actions (#68) (Pengyuan Zhao)([35b05ef](https://github.com/lacework/lw-scanner-action/commit/35b05efd9997d734b89ec3a8502291706a05886e))
+* ci: version bump to v1.4.1-dev (Lacework)([4127bc0](https://github.com/lacework/lw-scanner-action/commit/4127bc0cf4a54319fa4adc65d7dde1af8fad90d8))
