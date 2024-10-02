@@ -41,7 +41,7 @@ fi
 # Remove old scanner evaluation, if cached somehow
 rm ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json &>/dev/null || true
 
-/opt/lacework/lw-scanner image evaluate ${INPUT_IMAGE_NAME} ${INPUT_IMAGE_TAG} \
+/app/vulnerability/scanner/lacework/local-scanner/main/local-scanner.binary image evaluate ${INPUT_IMAGE_NAME} ${INPUT_IMAGE_TAG} \
     --build-plan ${GITHUB_REPOSITORY} \
     --build-id ${GITHUB_RUN_ID} \
     --data-directory ${GITHUB_WORKSPACE} \
