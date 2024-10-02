@@ -46,7 +46,7 @@ rm ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evalua
     --build-id ${GITHUB_RUN_ID} \
     --data-directory ${GITHUB_WORKSPACE} \
     --policy \
-    --fail-on-violation-exit-code 1 ${SCANNER_PARAMETERS} | tee results.stdout
+    --fail-on-violation-exit-code 1 ${SCANNER_PARAMETERS} > results.stdout
 
 export SCANNER_EXIT_CODE=$?
 
