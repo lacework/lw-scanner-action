@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -o pipefail
 
 # Set Lacework credentials as inline scanner environment variable
@@ -53,7 +53,7 @@ export SCANNER_EXIT_CODE=$?
 if [ "${INPUT_RESULTS_IN_GITHUB_SUMMARY}" = "true" ]; then
     echo "### Security Scan" >> $GITHUB_STEP_SUMMARY
     echo "<pre>" >> $GITHUB_STEP_SUMMARY
-    cat results.stdout >> $GITHUB_STEP_SUMMARY
+    printf '%s' "$(<results.stdout)" >> $GITHUB_STEP_SUMMARY
     echo "</pre>" >> $GITHUB_STEP_SUMMARY
 fi
 
