@@ -1,6 +1,11 @@
 # v1.4.2
 
 ## Bug Fixes
+* fix: Fix the cat command not found error (#79) (Lei Jin)([f78d4b8](https://github.com/lacework/lw-scanner-action/commit/f78d4b821974d9f5ffa6893d2362b53ce4affbbb))
+---
+# v1.4.2
+
+## Bug Fixes
 * fix: remove tests folder (#72) (Pengyuan Zhao)([0a0bd15](https://github.com/lacework/lw-scanner-action/commit/0a0bd158a1ea119be188fda9bbb9bda9e48e510b))
 ## Other Changes
 * chore:Upgrade inline scanner version to 0.27.0 (#75) (Lei Jin)([74fb2c2](https://github.com/lacework/lw-scanner-action/commit/74fb2c2ee06c8188d35705a1f296c54bfca5078b))
