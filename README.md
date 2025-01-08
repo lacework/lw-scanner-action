@@ -37,7 +37,7 @@ Options:
 | `SIMPLE_OUTPUT`             | Displays evaluation results without Introduced in `Layer` and `File Path` columns.                                                                                                                                                                        | `true`                                 |
 | `COLOR_OUTPUT`              | Colors are rendered in evaluation results when the `PRETTY_OUTPUT` option is enabled.                                                                                                                                                                     | `true`                                 |
 | `ADDITIONAL_PARAMETERS`     | Additional parameters/flags. Only [global](https://docs.lacework.com/onboarding/integrate-inline-scanner#global-flags) and [`image evalute`](https://docs.lacework.com/onboarding/integrate-inline-scanner#flags-for-image-evaluate) flags are supported. |                                        |
-| `RESULTS_IN_GITHUB_SUMMARY` | Display results in Github Summary. Further information [here](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/)                                                                                                            | `false`                                |
+| `RESULTS_IN_GITHUB_SUMMARY` | Display results in Github Summary. Further information [here](https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/)                                                                                                            | `true`                                 |
 
 # Environment variables
 
