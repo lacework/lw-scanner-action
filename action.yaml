@@ -49,9 +49,9 @@ inputs:
     description: "Additional parameters/flags. Only global and `image evalute` flags are supported."
     required: false
   RESULTS_IN_GITHUB_SUMMARY:
-    description: "Display results in github summary. (Default: false)"
+    description: "Display results in github summary. (Default: true)"
     required: false
-    default: "false"
+    default: "true"
 runs:
   using: "docker"
   image: "Dockerfile"
