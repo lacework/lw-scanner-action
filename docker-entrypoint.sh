@@ -41,13 +41,21 @@ fi
 # Remove old scanner evaluation, if cached somehow
 rm ${GITHUB_WORKSPACE}/evaluations/${INPUT_IMAGE_NAME}/${INPUT_IMAGE_TAG}/evaluation_*.json &>/dev/null || true
 
-/app/vulnerability/scanner/lacework/local-scanner/main/local-scanner.binary image evaluate ${INPUT_IMAGE_NAME} ${INPUT_IMAGE_TAG} \
+# fix ownership and drop privileges
+# ensure non-root user (scanner) can access workspace
+chown -R scanner:scanner "${GITHUB_WORKSPACE}"
+
+# build scanner command separately
+SCANNER_CMD="/app/vulnerability/scanner/lacework/local-scanner/main/local-scanner.binary image evaluate ${INPUT_IMAGE_NAME} ${INPUT_IMAGE_TAG} \
     --build-plan ${GITHUB_REPOSITORY} \
     --build-id ${GITHUB_RUN_ID} \
     --data-directory ${GITHUB_WORKSPACE} \
     --policy \
-    --fail-on-violation-exit-code 1 ${SCANNER_PARAMETERS} > results.stdout
+    --fail-on-violation-exit-code 1 ${SCANNER_PARAMETERS}"
 
+# run as non-root (su-exec or gosu)
+# su-exec <user>:<group> <command> ...
+su-exec scanner:scanner $SCANNER_CMD > results.stdout
 export SCANNER_EXIT_CODE=$?
 
 if [ "${INPUT_RESULTS_IN_GITHUB_SUMMARY}" = "true" ]; then
