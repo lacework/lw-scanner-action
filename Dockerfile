@@ -4,7 +4,7 @@
 FROM alpine:3.17 AS builder
 
 # Install a statically-linked BusyBox and su-exec
-RUN apk add --no-cache busybox-static su-exec
+RUN apk add --no-cache busybox-static su-exec dos2unix
 
 # Create a directory to hold our binaries
 RUN mkdir /bundle
@@ -15,6 +15,7 @@ RUN cp /sbin/su-exec /bundle/su-exec
 
 # Copy and chmod your entrypoint script
 COPY docker-entrypoint.sh /bundle/docker-entrypoint.sh
+RUN dos2unix /bundle/docker-entrypoint.sh
 RUN chmod +x /bundle/docker-entrypoint.sh
 
 # --------------------------------------------
