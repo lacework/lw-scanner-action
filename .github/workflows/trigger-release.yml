@@ -11,9 +11,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: main
-          token: ${{ secrets.TOKEN }}
 
       - name: Trigger release
         env:
