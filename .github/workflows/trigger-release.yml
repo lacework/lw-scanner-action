@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
 
 jobs:
   trigger-release:
@@ -13,36 +12,36 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-        #- name: Trigger release
-        #  env:
-        #    GPG_SECRET_KEY: ${{ secrets.GPG_SECRET_KEY }}
-        #    GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
-        #    CI: true
-        #  run: |
-        #    echo "$GPG_SECRET_KEY" | base64 --decode | gpg --import --no-tty --batch --yes
-        #    scripts/release.sh trigger
+      - name: Trigger release
+        env:
+          GPG_SECRET_KEY: ${{ secrets.GPG_SECRET_KEY }}
+          GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+          CI: true
+        run: |
+          echo "$GPG_SECRET_KEY" | base64 --decode | gpg --import --no-tty --batch --yes
+          scripts/release.sh trigger
 
-        #- name: Notify Slack on Failure
-        #  uses: slackapi/slack-github-action@v1.25.0
-        #  if: failure()
-        #  with:
-        #    payload: |
-        #      {
-        #        "attachments": [
-        #          {
-        #            "color": "#E92020",
-        #            "blocks": [
-        #              {
-        #                "type": "section",
-        #                "text": {
-        #                  "type": "mrkdwn",
-        #                  "text": "@oncall-growth-eng! There has been a failure that needs your attention. :rotating_light:\n*GitHub Workflow Failure*\nlw-scanner-action/trigger-release\n*Workflow Run*\n https://github.com/lacework/lw-scanner-action/actions/runs/${{ github.run_id }}"
-        #                }
-        #              }
-        #            ]
-        #          }
-        #        ]
-        #      }
-        #  env:
-        #    SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_GROWTH_ENG_ALERTS }}
-        #    SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+      - name: Notify Slack on Failure
+        uses: slackapi/slack-github-action@v1.25.0
+        if: failure()
+        with:
+          payload: |
+            {
+              "attachments": [
+                {
+                  "color": "#E92020",
+                  "blocks": [
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "@oncall-growth-eng! There has been a failure that needs your attention. :rotating_light:\n*GitHub Workflow Failure*\nlw-scanner-action/trigger-release\n*Workflow Run*\n https://github.com/lacework/lw-scanner-action/actions/runs/${{ github.run_id }}"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_GROWTH_ENG_ALERTS }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
